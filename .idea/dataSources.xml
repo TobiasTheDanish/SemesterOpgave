@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:mysql://206.81.31.86:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="semesteropgave@206.81.31.86" uuid="6b7510c4-b14e-4eb2-9de8-522177e925e1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://206.81.31.86:3306/semesteropgave</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
