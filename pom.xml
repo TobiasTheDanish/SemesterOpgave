@@ -7,9 +7,9 @@
     <!-- TODO: Change <artifactId> and <name> below to your project name -->
 
     <groupId>dat</groupId>
-    <artifactId>startcode</artifactId>
+    <artifactId>Semesteropgave</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>startcode</name>
+    <name>Semesteropgave</name>
     <packaging>war</packaging>
 
     <properties>

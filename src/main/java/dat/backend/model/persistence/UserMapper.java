@@ -15,7 +15,7 @@ class UserMapper
 
         User user = null;
 
-        String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
 
         try (Connection connection = connectionPool.getConnection())
         {
@@ -26,7 +26,7 @@ class UserMapper
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
-                    String role = rs.getString("role");
+                    int role = rs.getInt("role");
                     user = new User(username, password, role);
                 } else
                 {
@@ -40,7 +40,7 @@ class UserMapper
         return user;
     }
 
-    static User createUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException
+    static User createUser(String username, String password, int role, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
@@ -51,7 +51,7 @@ class UserMapper
             {
                 ps.setString(1, username);
                 ps.setString(2, password);
-                ps.setString(3, role);
+                ps.setInt(3, role);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {

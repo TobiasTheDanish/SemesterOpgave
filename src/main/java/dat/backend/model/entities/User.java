@@ -6,9 +6,9 @@ public class User
 {
     private String username;
     private String password;
-    private String role;
+    private int role;
 
-    public User(String username, String password, String role)
+    public User(String username, String password, int role)
     {
         this.username = username;
         this.password = password;
@@ -35,12 +35,12 @@ public class User
         this.password = password;
     }
 
-    public String getRole()
+    public int getRole()
     {
         return role;
     }
 
-    public void setRole(String role)
+    public void setRole(int role)
     {
         this.role = role;
     }
@@ -52,7 +52,7 @@ public class User
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
-                getRole().equals(user.getRole());
+                getRole() == user.getRole();
     }
 
     @Override
