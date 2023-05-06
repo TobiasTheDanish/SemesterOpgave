@@ -24,6 +24,6 @@
             <input type="password" id="password" name="password"/>
             <input type="submit"  value="Log in"/>
         </form>
-
+        <p>Not already registered? Click <a href="createUser.jsp">here</a> to login.</p>
     </jsp:body>
 </t:pagetemplate>
