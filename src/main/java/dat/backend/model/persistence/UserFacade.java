@@ -14,4 +14,8 @@ public class UserFacade
     {
         return UserMapper.createUser(username, password, role, connectionPool);
     }
+
+    public static boolean doesUserExist(String email, ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.doesUserExist(email, connectionPool);
+    }
 }

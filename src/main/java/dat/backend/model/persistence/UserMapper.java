@@ -70,4 +70,22 @@ class UserMapper
     }
 
 
+    protected static boolean doesUserExist(String email, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT COUNT(user_id) FROM semesteropgave.user WHERE email=?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, email);
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt(1) > 0 ;
+                }
+            }
+        } catch (SQLException throwables) {
+            throw new DatabaseException(throwables.getMessage());
+        }
+
+        return false;
+    }
 }
