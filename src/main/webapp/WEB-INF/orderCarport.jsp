@@ -14,7 +14,7 @@
     <title>Order Carport</title>
 </head>
 <body>
- <h1>ORDER CARPORT</h1>
+ <h1>Bestil Carport</h1>
 
 <form method="post" action="ordercarportservlet">
     <label for="width">Width in cm</label> <br>
