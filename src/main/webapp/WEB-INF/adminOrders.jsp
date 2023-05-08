@@ -22,6 +22,7 @@
                 <th>Bredde</th>
                 <th>Højde</th>
                 <th>Længde</th>
+                <th></th>
             </tr>
             <c:forEach var="order" items="${requestScope.orders}">
                 <tr>
@@ -31,6 +32,12 @@
                     <td>${order.width}</td>
                     <td>${order.height}</td>
                     <td>${order.length}</td>
+                    <td>
+                        <form action="adminvieworderservlet">
+                            <input type="hidden" value="${order.id}" name="orderId">
+                            <input type="submit" value="Se info">
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
