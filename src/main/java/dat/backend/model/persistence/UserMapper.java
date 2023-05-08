@@ -44,6 +44,7 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
+
         String sql = "INSERT INTO semesteropgave.user (email, password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
@@ -52,6 +53,10 @@ class UserMapper
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setInt(3, role);
+                ps.setString(4, "");
+                ps.setString(5, "");
+                ps.setInt(6, 0);
+                ps.setInt(7, 0);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
