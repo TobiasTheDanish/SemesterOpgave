@@ -18,4 +18,8 @@ public class UserFacade
     public static boolean doesUserExist(String email, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.doesUserExist(email, connectionPool);
     }
+
+    public static int getId(String email, ConnectionPool connectionPool) throws DatabaseException{
+        return UserMapper.getId(email, connectionPool);
+    }
 }
