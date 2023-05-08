@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderMapper {
-    public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
+class OrderMapper {
+    protected static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Order> result = new ArrayList<>();
 
         String sql = "SELECT * FROM semesteropgave.order";
@@ -44,8 +44,8 @@ public class OrderMapper {
         return result;
     }
 
-    private static List<Material> getOrderMaterials(int id, ConnectionPool connectionPool) throws DatabaseException {
-        List<Material> materials = new ArrayList<>();
+    protected static List<Pair<Material, Integer>> getOrderMaterials(int id, ConnectionPool connectionPool) throws DatabaseException {
+        List<Pair<Material, Integer>> materials = new ArrayList<>();
 
         String sql = "SELECT * FROM semesteropgave.orderLinking WHERE order_id=?";
 
