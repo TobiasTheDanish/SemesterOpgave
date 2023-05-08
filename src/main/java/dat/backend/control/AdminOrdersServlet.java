@@ -28,11 +28,12 @@ public class AdminOrdersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<Order> orders = OrderFacade.getAllOrders(connectionPool);
+
+            request.setAttribute("orders", orders);
+            request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-
-        request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
     }
 
     @Override
