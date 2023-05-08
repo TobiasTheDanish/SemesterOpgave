@@ -4,6 +4,7 @@ import dat.backend.model.entities.Material;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
+import org.javatuples.Pair;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ class OrderMapper {
                 while (rs.next()) {
                     int id = rs.getInt("order_id");
                     int userId = rs.getInt("user_id");
-                    String status = rs.getString("status");
+                    int status = rs.getInt("status");
                     int width = rs.getInt("width");
                     int height = rs.getInt("height");
                     int length = rs.getInt("length");
@@ -35,6 +36,8 @@ class OrderMapper {
                     Order order = new Order(user, status, width, height,length);
                     order.setId(id);
                     order.setMaterials(getOrderMaterials(id, connectionPool));
+
+                    result.add(order);
                 }
             }
         } catch (SQLException e) {
@@ -57,6 +60,9 @@ class OrderMapper {
                 while (rs.next()) {
                     int materialId = rs.getInt("material_id");
                     int amount = rs.getInt("material_amount");
+                    Material m = MaterialMapper.getMaterialById(materialId, connectionPool);
+
+                    materials.add(new Pair<>(m, amount));
                 }
             }
         } catch (SQLException e) {
