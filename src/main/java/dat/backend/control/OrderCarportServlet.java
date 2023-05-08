@@ -42,8 +42,9 @@ public class OrderCarportServlet extends HttpServlet {
             int length = Integer.parseInt(request.getParameter("length"));
             Order order = new Order(user, Status.BESTILT, width, height, length);
             if (OrderFacade.createOrder(order, connectionPool)) {
-                //TODO opret kvitteringsside
-                request.getRequestDispatcher("").forward(request, response);
+
+                request.setAttribute("order", order);
+                request.getRequestDispatcher("WEB-INF/orderConfirmation.jsp").forward(request, response);
             } else {
                 request.setAttribute("errormessage", "Kunne ikke oprette ordre.");
             }
