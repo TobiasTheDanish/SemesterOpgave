@@ -88,4 +88,33 @@ class UserMapper
 
         return false;
     }
+
+    public static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        User user = null;
+
+        String sql = "SELECT * FROM semesteropgave.user WHERE user_id=?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, userId);
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+                    int role = rs.getInt("role");
+                    String firstName = rs.getString("firstName");
+                    String lastName = rs.getString("lastName");
+                    int phoneNr = rs.getInt("phoneNr");
+                    int zipCode = rs.getInt("zipCode");
+
+                    return new User(email, password, role);
+                }
+            }
+        } catch (SQLException throwables) {
+            throw new DatabaseException(throwables.getMessage());
+        }
+
+        return user;
+    }
 }
