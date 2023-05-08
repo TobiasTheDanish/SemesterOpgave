@@ -6,15 +6,34 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Orders
+             Ordrer
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Orders
+            Ordrer
     </jsp:attribute>
 
     <jsp:body>
-        <p>This is the body</p>
+        <table>
+            <tr>
+                <th>Ordre ID</th>
+                <th>Kunde</th>
+                <th>Status</th>
+                <th>Bredde</th>
+                <th>Højde</th>
+                <th>Længde</th>
+            </tr>
+            <c:forEach var="order" items="${requestScope.orders}">
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.user.username}</td>
+                    <td>${order.status}</td>
+                    <td>${order.width}</td>
+                    <td>${order.height}</td>
+                    <td>${order.length}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </jsp:body>
 
 </t:pagetemplate>
