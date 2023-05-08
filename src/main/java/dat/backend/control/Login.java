@@ -27,8 +27,8 @@ public class Login extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
-        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
-        response.sendRedirect("index.jsp");
+        // You shouldn't end up here with a GET-request, thus you get sent back to loginpage
+        response.sendRedirect("login.jsp");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
@@ -36,7 +36,7 @@ public class Login extends HttpServlet
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         session.setAttribute("user", null); // invalidating user object in session scope
-        String username = request.getParameter("username");
+        String username = request.getParameter("email");
         String password = request.getParameter("password");
 
         try
