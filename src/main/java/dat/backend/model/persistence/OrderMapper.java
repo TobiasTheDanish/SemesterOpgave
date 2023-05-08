@@ -25,19 +25,8 @@ class OrderMapper {
 
                 while (rs.next()) {
                     int id = rs.getInt("order_id");
-                    int userId = rs.getInt("user_id");
-                    int status = rs.getInt("status");
-                    int width = rs.getInt("width");
-                    int height = rs.getInt("height");
-                    int length = rs.getInt("length");
 
-                    User user = UserMapper.getUserById(userId, connectionPool);
-
-                    Order order = new Order(user, status, width, height,length);
-                    order.setId(id);
-                    order.setMaterials(getOrderMaterials(id, connectionPool));
-
-                    result.add(order);
+                    result.add(getOrderFromResultSet(rs, id, connectionPool));
                 }
             }
         } catch (SQLException e) {
