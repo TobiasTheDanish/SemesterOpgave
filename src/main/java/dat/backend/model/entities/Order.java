@@ -8,13 +8,13 @@ import java.util.List;
 public class Order {
     private int id;
     private User user;
-    private int status;
+    private Status status;
     private int width;
     private int height;
     private int length;
     private List<Pair<Material, Integer>> materials;
 
-    public Order(User user, int status, int width, int height, int length) {
+    public Order(User user, Status status, int width, int height, int length) {
         this.id = 0;
         this.user = user;
         this.status = status;
@@ -40,11 +40,11 @@ public class Order {
         this.user = user;
     }
 
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

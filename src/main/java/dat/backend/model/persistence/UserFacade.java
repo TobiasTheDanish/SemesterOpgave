@@ -19,6 +19,10 @@ public class UserFacade
         return UserMapper.doesUserExist(email, connectionPool);
     }
 
+    public static int getId(String email, ConnectionPool connectionPool) throws DatabaseException{
+        return UserMapper.getId(email, connectionPool);
+    }
+
     public static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getUserById(userId, connectionPool);
     }

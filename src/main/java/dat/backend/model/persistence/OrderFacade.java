@@ -13,4 +13,8 @@ public class OrderFacade {
     public static Order getOrderById(int id, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.getOrderById(id, connectionPool);
     }
+
+    public static boolean createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.createOrder(order, connectionPool);
+    }
 }
