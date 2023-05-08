@@ -2,6 +2,7 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Material;
 import dat.backend.model.entities.Order;
+import dat.backend.model.entities.Status;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import org.javatuples.Pair;
@@ -59,7 +60,7 @@ class OrderMapper {
 
     private static Order getOrderFromResultSet(ResultSet rs, int id, ConnectionPool connectionPool) throws SQLException, DatabaseException {
         int userId = rs.getInt("user_id");
-        int status = rs.getInt("status");
+        Status status = Status.values()[rs.getInt("status")];
         int width = rs.getInt("width");
         int height = rs.getInt("height");
         int length = rs.getInt("length");
@@ -91,8 +92,11 @@ class OrderMapper {
                     materials.add(new Pair<>(m, amount));
                 }
             }
-            return materials;
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
         }
+        return materials;
+    }
 
     protected static boolean createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
             String sql = "INSERT INTO semesteropgave.order (user_id, status, width, height, length) values (?, ?, ?, ?, ?)";
