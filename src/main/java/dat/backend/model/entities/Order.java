@@ -1,18 +1,20 @@
 package dat.backend.model.entities;
 
+import org.javatuples.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private int id;
     private User user;
-    private String status;
+    private int status;
     private int width;
     private int height;
     private int length;
-    private List<Material> materials;
+    private List<Pair<Material, Integer>> materials;
 
-    public Order(User user, String status, int width, int height, int length) {
+    public Order(User user, int status, int width, int height, int length) {
         this.id = 0;
         this.user = user;
         this.status = status;
@@ -38,11 +40,11 @@ public class Order {
         this.user = user;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -70,11 +72,11 @@ public class Order {
         this.length = length;
     }
 
-    public List<Material> getMaterials() {
+    public List<Pair<Material, Integer>> getMaterials() {
         return materials;
     }
 
-    public void setMaterials(List<Material> materials) {
+    public void setMaterials(List<Pair<Material, Integer>> materials) {
         this.materials = materials;
     }
 }
