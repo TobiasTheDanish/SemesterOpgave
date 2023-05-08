@@ -16,18 +16,9 @@
 <body>
  <h1>ORDER CARPORT</h1>
 
-<form>
-    <label for="width">Width in cm</label> <br>
-    <input type="number" id="width" name="width"><br>
-    <label for="height">Height in cm</label> <br>
-    <input type="number" id="height" name="height"> <br>
-    <label for="length">Length in cm</label> <br>
-    <input type="number" id="length" name="length"> <br> <br> <br>
-</form>
-
 <form method="post" action="ordercarportservlet">
     <label for="width">Width in cm</label> <br>
-    <input list="widths" name="width">
+    <input list="widths" id="width" name="width">
     <datalist id="widths">
         <option value="400">
         <option value="450">
@@ -39,7 +30,7 @@
         <option value="750">
     </datalist> <br>
     <label for="height">Height in cm</label> <br>
-    <input list="heights" name="height"> <br>
+    <input list="heights" id="height" name="height"> <br>
     <datalist id="heights">
         <option value="400">
         <option value="450">
@@ -51,7 +42,7 @@
         <option value="750">
     </datalist>
     <label for="length">Length in cm</label> <br>
-    <input list="lengths" name="length">
+    <input list="lengths" id="length" name="length">
     <datalist id="lengths">
         <option value="400">
         <option value="450">
