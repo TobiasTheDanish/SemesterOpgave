@@ -18,7 +18,7 @@
 
 <form method="post" action="ordercarportservlet">
     <label for="width">Width in cm</label> <br>
-    <input list="widths" id="width" name="width">
+    <input list="widths" id="width" name="width" required="required">
     <datalist id="widths">
         <option value="400">
         <option value="450">
@@ -30,7 +30,7 @@
         <option value="750">
     </datalist> <br>
     <label for="height">Height in cm</label> <br>
-    <input list="heights" id="height" name="height"> <br>
+    <input list="heights" id="height" name="height" required="required"> <br>
     <datalist id="heights">
         <option value="400">
         <option value="450">
@@ -42,7 +42,7 @@
         <option value="750">
     </datalist>
     <label for="length">Length in cm</label> <br>
-    <input list="lengths" id="length" name="length">
+    <input list="lengths" id="length" name="length" required="required">
     <datalist id="lengths">
         <option value="400">
         <option value="450">
@@ -54,7 +54,7 @@
         <option value="750">
     </datalist> <br> <br>
 
-    <input type="submit">
+    <input type="submit" value="Bestil">
 </form>
 </body>
 </t:pagetemplate>

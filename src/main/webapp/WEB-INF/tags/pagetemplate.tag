@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background: #003d76">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
-                <img src="${pageContext.request.contextPath}/images/cphbusiness.png" width="400px;" class="img-fluid"/>
+                <img src="${pageContext.request.contextPath}/images/fogImage.jpg" width="200px;" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
 
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">${sessionScope.user.username}</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 3</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
