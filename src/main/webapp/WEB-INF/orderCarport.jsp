@@ -54,7 +54,7 @@
         <option value="750">
     </datalist> <br> <br>
 
-    <input type="submit">
+    <input type="submit" value="Bestil">
 </form>
 </body>
 </t:pagetemplate>
