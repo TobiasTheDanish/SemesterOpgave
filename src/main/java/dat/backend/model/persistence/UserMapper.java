@@ -75,6 +75,32 @@ class UserMapper
     }
 
 
+    //TODO check this method. UserID/Email idk what to use.
+    public static User getUser(int id, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM user WHERE user_id=?";
+
+        try (Connection connection = connectionPool.getConnection()){
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String email = rs.getString("email");
+                String pw = rs.getString("password");
+                int role = rs.getInt("role");
+
+                return new User(email, pw, role);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+        return null;
+    }
+
+
+
     protected static boolean doesUserExist(String email, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT COUNT(user_id) FROM semesteropgave.user WHERE email=?";
 
