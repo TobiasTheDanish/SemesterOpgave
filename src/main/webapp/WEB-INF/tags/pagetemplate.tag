@@ -52,7 +52,7 @@
 </div>
 
 <!-- Footer -->
-<div class="container mt-3">
+<div class="container mt-3" style="color: white">
     <hr/>
     <div class="row mt-4">
         <div class="col">
