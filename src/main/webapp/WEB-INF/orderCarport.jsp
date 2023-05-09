@@ -13,11 +13,17 @@
 <head>
     <title>Order Carport</title>
 </head>
-<body style="background: #003d76">
+<body style="background: #003d76; text-align: center">
 <div class="container p-5" style="min-height: 50rem; background: white">
-    <div style="display: flex; justify-content: center">
-    <h1>Bestil Carport</h1>
-    
+    <div style="">
+    <h1><span>Bestil Carport</span></h1>
+    <p><span>Velkommen til vores side for specialbestilling af carporte hos Johannes Fog.
+        Her kan du få en carport i præcis de mål, du ønsker. Vi ved, hvor vigtigt det er at have den rigtige størrelse,
+        når du skal beskytte dine køretøjer eller opbevare dine ting, og derfor tilbyder vi en unik løsning til dig.
+        Vi har gjort det nemt for dig at bestille din carport ved at give dig mulighed for at specificere alle de mål,
+        du ønsker, herunder højde, bredde og længde. Uanset om du har brug for en carport til en enkelt bil,
+        en større vognpark eller som et ekstra opbevaringsrum, kan vi hjælpe dig med at designe og levere den perfekte løsning.
+        </span></p>
     </div>
 
     <div style="display: flex; justify-content: center">
