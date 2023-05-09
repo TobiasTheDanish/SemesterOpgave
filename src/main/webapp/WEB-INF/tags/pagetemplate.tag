@@ -18,7 +18,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background: #003d76">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #003d76; border-bottom: 2px solid white">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/fogImage.jpg" width="200px;" class="img-fluid"/>
@@ -52,7 +52,7 @@
 </div>
 
 <!-- Footer -->
-<div class="container mt-3" style="color: white">
+<div class="container mt-3" style="color: white; text-align: center">
     <hr/>
     <div class="row mt-4">
         <div class="col">

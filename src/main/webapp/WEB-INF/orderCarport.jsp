@@ -16,7 +16,7 @@
 <body style="background: #003d76; text-align: center">
 <div class="container p-5" style="min-height: 50rem; background: white">
     <div style="">
-    <h1><span>Bestil Carport</span></h1>
+    <h1><span>Bestilling af carport</span></h1>
     <p><span>Velkommen til vores side for specialbestilling af carporte hos Johannes Fog.
         Her kan du få en carport i præcis de mål, du ønsker. Vi ved, hvor vigtigt det er at have den rigtige størrelse,
         når du skal beskytte dine køretøjer eller opbevare dine ting, og derfor tilbyder vi en unik løsning til dig.
