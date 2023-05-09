@@ -35,10 +35,10 @@
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Page 3</a>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 3rem" href="${pageContext.request.contextPath}/login.jsp">Log in</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 3rem" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>
@@ -56,16 +56,16 @@
     <hr/>
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
+            Firskovvej 20 <br/>
             2800 Lyngby
         </div>
         <div class="col">
             <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; 2022 Cphbusiness</p>
+            <p>CVR-nr. 16314439</p>
         </div>
         <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester efterår 2022
+            Johannes Fog &copy;<br/>
+            Byggematerialer siden 1920
         </div>
     </div>
 
