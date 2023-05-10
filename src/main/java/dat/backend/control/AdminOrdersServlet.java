@@ -29,7 +29,7 @@ public class AdminOrdersServlet extends HttpServlet {
         try {
             List<Order> orders = OrderFacade.getAllOrders(connectionPool);
 
-            request.setAttribute("orders", orders);
+            request.getSession().setAttribute("orders", orders);
             request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
         } catch (DatabaseException e) {
             e.printStackTrace();
