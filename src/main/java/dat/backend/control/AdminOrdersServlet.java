@@ -11,23 +11,30 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.regex.MatchResult;
 
 @WebServlet(name = "adminordersservlet", value = "/adminordersservlet")
 public class AdminOrdersServlet extends HttpServlet {
     private ConnectionPool connectionPool;
+    private long lastGetOrdersCall;
 
     @Override
-    public void init() throws ServletException
+    public void init()
     {
         this.connectionPool = ApplicationStart.getConnectionPool();
+        this.lastGetOrdersCall = System.currentTimeMillis();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<Order> orders = OrderFacade.getAllOrders(connectionPool);
+        List<Order> orders = (List<Order>) request.getSession().getAttribute("orders");
+
+        if (orders == null || orders.size() == 0 || shouldGetOrders()) {
+            try {
+                orders = OrderFacade.getAllOrders(connectionPool);
+                lastGetOrdersCall = System.currentTimeMillis();
 
                 request.getSession().setAttribute("orders", orders);
                 request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
@@ -40,5 +47,9 @@ public class AdminOrdersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    private boolean shouldGetOrders() {
+        return lastGetOrdersCall + 1000 >= System.currentTimeMillis();
     }
 }
