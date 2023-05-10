@@ -23,4 +23,7 @@ public class OrderFacade {
         return OrderMapper.viewOrder(user, connectionPool);
     }
 
+    public static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.getAllOrdersWithoutMaterials(connectionPool);
+    }
 }
