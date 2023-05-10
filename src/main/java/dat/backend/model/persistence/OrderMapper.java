@@ -164,4 +164,19 @@ class OrderMapper {
             throw new DatabaseException(e.getMessage());
         }
     }
+
+    protected static boolean updateStatus(int statusOrdinal, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE semesteropgave.order o SET o.status = ? WHERE o.order_id = ?";
+        try (Connection connection = connectionPool.getConnection()){
+            try (PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, statusOrdinal);
+                ps.setInt(2, orderId);
+                int rowsAffected = ps.executeUpdate();
+                return rowsAffected == 1;
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
+    }
 }

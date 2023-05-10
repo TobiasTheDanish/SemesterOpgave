@@ -22,6 +22,8 @@
                 <th>Højde</th>
                 <th>Længde</th>
                 <th></th>
+                <th></th>
+                <th></th>
             </tr>
             <c:forEach var="order" items="${sessionScope.orders}">
                 <c:if test="${!order.inactive}">
@@ -38,6 +40,22 @@
                     <td>${order.width}</td>
                     <td>${order.height}</td>
                     <td>${order.length}</td>
+                    <td>
+                        <form action="adminupdatestatusservlet" method="post">
+                            <input type="hidden" value="${order.id}" name="orderId">
+                            <input type="hidden" value="${order.status}" name="status">
+                            <input type="hidden" value="minus" name="action">
+                            <input type="submit" value="&#x2212;" style="background: #003d76; border: none; color: white; border-radius: 25px; padding: 4px 12px 6px; margin-right: 0">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="adminupdatestatusservlet" method="post">
+                            <input type="hidden" value="${order.id}" name="orderId">
+                            <input type="hidden" value="${order.status}" name="status">
+                            <input type="hidden" value="plus" name="action">
+                            <input type="submit" value="&#x2b;" style="background: #003d76; border: none; color: white; border-radius: 25px; padding: 4px 12px 6px;">
+                        </form>
+                    </td>
                     <td>
                         <form action="adminvieworderservlet">
                             <input type="hidden" value="${order.id}" name="orderId">

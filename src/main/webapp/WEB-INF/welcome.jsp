@@ -6,15 +6,8 @@
 <t:pagetemplate>
     <body style="background: #003d76; color: white">
 
-        <p>You should be logged in now</p>
-
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
-
         <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="../login.jsp">Login</a></p>
+            <p>Du er ikke logget ind. Log ind <a href="../login.jsp">her</a>.</p>
         </c:if>
 
     </body>
