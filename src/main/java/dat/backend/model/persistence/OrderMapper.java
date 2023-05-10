@@ -131,6 +131,7 @@ class OrderMapper {
         List<Order> orders = new ArrayList<>();
         String sql = "SELECT * FROM `order` WHERE user_id = ?";
         try(Connection connection = connectionPool.getConnection()){
+
             try(PreparedStatement ps = connection.prepareStatement(sql)) {
                ps.setInt(1, user.getId());
                ResultSet rs = ps.executeQuery();
@@ -140,9 +141,11 @@ class OrderMapper {
                    int width = rs.getInt("width");
                    int height = rs.getInt("height");
                    int length = rs.getInt("length");
+                   boolean isInactive = rs.getBoolean("isInactive");
                    int statusOrdinal = rs.getInt("status");
                    Order order = new Order(user, Status.values()[statusOrdinal], width, height, length);
                    order.setId(id);
+                   order.setInactive(isInactive);
                    orders.add(order);
                }
                return orders;

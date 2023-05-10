@@ -15,6 +15,7 @@ public class Order {
     private List<Pair<Material, Integer>> materials;
     private boolean isInactive;
 
+
     public Order(User user, Status status, int width, int height, int length) {
         this.id = 0;
         this.user = user;
@@ -89,4 +90,6 @@ public class Order {
     public void setMaterials(List<Pair<Material, Integer>> materials) {
         this.materials = materials;
     }
+
+
 }
