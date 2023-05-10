@@ -38,7 +38,7 @@
                     <c:if test="${sessionScope.user != null }">
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil carport</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createprofileservlet">Profile</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createprofileservlet">Profil</a>
                     <c:if test="${sessionScope.user.role == 0}">
                         <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 1rem" href="${pageContext.request.contextPath}/adminordersservlet">Admin</a>
                     </c:if>

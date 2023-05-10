@@ -5,15 +5,15 @@
 
 <t:pagetemplate>
 
-    <body style="background: #003d76; color: black; text-align: center">
-        <div style="min-height: 45rem">
+    <body class="bodyBackground">
+        <div class="mainBox">
         <c:if test="${sessionScope.user != null}">
         </c:if>
 
         <c:if test="${sessionScope.user == null}">
         </c:if>
 
-            <div style="background: white; padding: 2rem;">
+            <div>
                 <h1>Velkommen til Johannes Fog</h1>
                 <p>Vi er specialiseret i at levere skræddersyede carporte i præcis de mål,
                     du ønsker. Vores holdbare og vejrbestandige carporte er bygget til at modstå de hårde danske vejrforhold

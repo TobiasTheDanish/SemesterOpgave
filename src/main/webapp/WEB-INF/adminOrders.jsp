@@ -3,12 +3,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
+<head>
+    <link href="/css/style.css">
+</head>
 
 <t:pagetemplate>
 
 
-    <body style="background: #003d76; color: black; text-align: center">
-    <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
+    <body class="bodyBackground">
+    <div class="mainBox" style="display: flex; align-content: center; flex-direction: column;">
 
     <h1>Alle ordrer</h1>
         <p>${requestScope.message}</p>

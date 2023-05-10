@@ -11,8 +11,8 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 <t:pagetemplate>
 
-    <body style="background: #003d76; text-align: center">
-    <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
+    <body class="bodyBackground">
+    <div class="mainBox" style="display: flex; align-content: center; flex-direction: column;">
         <h1>Mine ordrer</h1>
 
         <table>

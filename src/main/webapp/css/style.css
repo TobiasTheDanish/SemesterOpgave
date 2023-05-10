@@ -11,5 +11,27 @@ th, td {
     padding:15px;
 }
 
+.mainBox {
+    background: white;
+    color: black;
+    min-height: 30rem;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.bodyBackground {
+    background: #003d76;
+    color: black;
+    text-align: center
+}
+
+.buttonBlue {
+    background: #003d76;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    padding: 5px 12px;
+}
+
 
 

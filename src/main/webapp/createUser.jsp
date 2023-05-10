@@ -3,29 +3,23 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
-
+<head>
+    <link href="css/style.css">
+</head>
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Create user
-    </jsp:attribute>
-
-    <jsp:attribute name="footer">
-            Create user
-    </jsp:attribute>
-
-    <jsp:body>
-
-        <h3>You can create a new user here</h3>
+    <body class="bodyBackground">
+        <div class="mainBox">
+        <h3>Du kan lave en bruger her</h3>
         <h4>${requestScope.errormessage}</h4>
         <form action="createuserservlet" method="post">
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email" value="${requestScope.email}" required/>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" required/>
-            <label for="confirmPassword">Confirm Password: </label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required/>
-            <input type="submit" value="Create">
+            <label for="email">Email: </label> <br>
+            <input type="email" id="email" name="email" value="${requestScope.email}" required/> <br> <br>
+            <label for="password">Kodeord: </label> <br>
+            <input type="password" id="password" name="password" required/> <br> <br>
+            <label for="confirmPassword">Bekræft kodeord: </label> <br>
+            <input type="password" id="confirmPassword" name="confirmPassword" required/> <br>
+            <input type="submit" value="Opret" class="buttonBlue" style="margin-top: 2rem;">
         </form>
-
-    </jsp:body>
+        </div>
+    </body>
 </t:pagetemplate>
