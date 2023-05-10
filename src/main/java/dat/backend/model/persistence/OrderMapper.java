@@ -177,11 +177,13 @@ class OrderMapper {
                     int width = rs.getInt("width");
                     int height = rs.getInt("height");
                     int length = rs.getInt("length");
+                    boolean isInactive = rs.getBoolean("isInactive");
 
                     User user = UserMapper.getUserById(userId, connectionPool);
 
                     Order order = new Order(user, status, width, height,length);
                     order.setId(id);
+                    order.setInactive(isInactive);
 
                     result.add(order);
                 }

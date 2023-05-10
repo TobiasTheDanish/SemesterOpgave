@@ -10,30 +10,33 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @WebServlet(name = "adminvieworderservlet", value = "/adminvieworderservlet")
 public class AdminViewOrderServlet extends HttpServlet {
-    private ConnectionPool connectionPool;
-
-    @Override
-    public void init() throws ServletException
-    {
-        this.connectionPool = ApplicationStart.getConnectionPool();
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Order order = null;
         try {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
-            Order order = OrderFacade.getOrderById(orderId, connectionPool);
+            List<Order> orders = (List<Order>) request.getSession().getAttribute("orders");
+
+            for (Order o : orders) {
+                if (o.getId() == orderId) {
+                    order = o;
+                }
+            }
+            if (order == null) {
+                throw new NoSuchElementException();
+            }
 
             request.setAttribute("order", order);
             request.getRequestDispatcher("WEB-INF/adminViewOrderInfo.jsp").forward(request, response);
-        } catch (DatabaseException e) {
+        } catch (NoSuchElementException e) {
             request.setAttribute("errormessage", "Kunne ikke finde en ordre med dette id");
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
 
     @Override

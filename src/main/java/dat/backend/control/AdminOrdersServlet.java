@@ -23,23 +23,30 @@ public class AdminOrdersServlet extends HttpServlet {
     public void init()
     {
         this.connectionPool = ApplicationStart.getConnectionPool();
-        this.lastGetOrdersCall = System.currentTimeMillis();
+        this.lastGetOrdersCall = 0;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Order> orders = (List<Order>) request.getSession().getAttribute("orders");
+        HttpSession session = request.getSession();
 
         if (orders == null || orders.size() == 0 || shouldGetOrders()) {
             try {
-                orders = OrderFacade.getAllOrders(connectionPool);
+                orders = OrderFacade.getAllOrdersWithoutMaterials(connectionPool);
                 lastGetOrdersCall = System.currentTimeMillis();
 
-                request.getSession().setAttribute("orders", orders);
+                session.setAttribute("orders", orders);
                 request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
+                for (Order order : orders) {
+                    order.setMaterials(OrderFacade.getOrderMaterials(order.getId(), connectionPool));
+                }
             } catch (DatabaseException e) {
                 e.printStackTrace();
             }
+        } else {
+            request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
+            System.out.println("else block");
         }
     }
 
@@ -49,6 +56,6 @@ public class AdminOrdersServlet extends HttpServlet {
     }
 
     private boolean shouldGetOrders() {
-        return lastGetOrdersCall + 1000 >= System.currentTimeMillis();
+        return lastGetOrdersCall + 5000 <= System.currentTimeMillis();
     }
 }
