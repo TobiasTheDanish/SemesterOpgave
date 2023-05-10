@@ -4,7 +4,7 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <body style="background: #003d76">
+    <body style="background: #003d76; color: white">
 
         <p>You should be logged in now</p>
 

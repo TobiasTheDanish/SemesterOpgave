@@ -1,6 +1,7 @@
 package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Order;
+import dat.backend.model.entities.Status;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
@@ -45,13 +46,15 @@ public class OrderMapper {
                ps.setInt(1, user.getId());
                ResultSet rs = ps.executeQuery();
                while (rs.next()){
+
+                   int id = rs.getInt("order_id");
                    int width = rs.getInt("width");
                    int height = rs.getInt("height");
                    int length = rs.getInt("length");
                    int statusOrdinal = rs.getInt("status");
-                   if (statusOrdinal == 0) orders.add(new Order(user, BESTILT, width, height, length));
-                   if (statusOrdinal == 1) orders.add(new Order(user, BEHANDLES, width, height, length));
-                   if (statusOrdinal == 2) orders.add(new Order(user, AFSLUTTET, width, height, length));
+                   Order order = new Order(user, Status.values()[statusOrdinal], width, height, length);
+                   order.setId(id);
+                   orders.add(order);
                }
                return orders;
             }
