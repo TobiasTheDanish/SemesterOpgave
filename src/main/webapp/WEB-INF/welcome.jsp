@@ -4,15 +4,7 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-         Welcome to the logged in area
-    </jsp:attribute>
-
-    <jsp:attribute name="footer">
-        Logged in area
-    </jsp:attribute>
-
-    <jsp:body>
+    <body style="background: #003d76; color: white">
 
         <p>You should be logged in now</p>
 
@@ -25,6 +17,6 @@
                     href="../login.jsp">Login</a></p>
         </c:if>
 
-    </jsp:body>
+    </body>
 
 </t:pagetemplate>

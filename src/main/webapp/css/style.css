@@ -11,5 +11,9 @@ th, td {
     padding:15px;
 }
 
+p span {
+    display: block;
+}
+
 
 

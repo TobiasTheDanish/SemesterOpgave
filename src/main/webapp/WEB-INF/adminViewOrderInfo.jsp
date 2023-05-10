@@ -5,18 +5,11 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Ordre info
-    </jsp:attribute>
-
-    <jsp:attribute name="footer">
-            Ordre info
-    </jsp:attribute>
-
-    <jsp:body>
+    <body style="background: #003d76; color: black; text-align: center">
+        <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
         <h4>Ordre #${requestScope.order.id}</h4>
         <table>
-            <tr>
+            <tr style="border-bottom: 2px solid black">
                 <th>Materiale</th>
                 <th>Antal</th>
                 <th>Beskrivelse</th>
@@ -25,7 +18,7 @@
                 <th>Højde</th>
             </tr>
             <c:forEach items="${requestScope.order.materials}" var="material">
-                <tr>
+                <tr style="border-bottom: 1px solid black">
                     <td>${material.value0.name}</td>
                     <td>${material.value1}</td>
                     <td>${material.value0.description}</td>
@@ -35,6 +28,7 @@
                 </tr>
             </c:forEach>
         </table>
-    </jsp:body>
+        </div>
+    </body>
 
 </t:pagetemplate>
