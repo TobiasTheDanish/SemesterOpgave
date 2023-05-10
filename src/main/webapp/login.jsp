@@ -5,25 +5,19 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Login
-    </jsp:attribute>
+    <body style="background: #003d76; color: black; text-align: center">
 
-    <jsp:attribute name="footer">
-            Login
-    </jsp:attribute>
-
-    <jsp:body>
-
-        <h3>You can log in here</h3>
+        <div class="container" style="background: white; min-height: 30rem; margin-top: 5rem; padding: 2rem">
+        <h3>Log ind her</h3>
 
         <form action="login" method="post">
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email"/>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
+            <label for="email">Email: </label> <br>
+            <input type="email" id="email" name="email"/> <br> <br>
+            <label for="password">Password: </label> <br>
+            <input type="password" id="password" name="password"/> <br>
+            <input type="submit"  value="Log in" style="margin: 2rem; border-radius: 25px; padding: 8px 25px; background: #003d76; color: white; border: 0;"/>
         </form>
-        <p>Not already registered? Click <a href="createUser.jsp">here</a> to login.</p>
-    </jsp:body>
+        <p style="margin-top: 6rem;">Har du <span style="text-decoration: 1px underline">IKKE</span> en bruger? Klik <a href="createUser.jsp" style="background: #003d76; color: white; border-radius: 25px; padding: 5px 12px; text-decoration: none">her</a> for at oprette dig.</p>
+        </div>
+    </body>
 </t:pagetemplate>
