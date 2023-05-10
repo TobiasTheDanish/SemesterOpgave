@@ -6,6 +6,7 @@
 
 <t:pagetemplate>
 
+
     <body style="background: #003d76; color: black; text-align: center">
     <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
 
@@ -26,9 +27,9 @@
                 <c:if test="${!order.inactive}">
                 <tr style="border-bottom: 1px solid black">
                     <td>
-                        <form action="admindeleteorderservlet" method="post">
+                        <form action="admindeleteorderservlet" method="post" id="removeOrder${order.id}">
                             <input type="hidden" value="${order.id}" name="orderId">
-                            <input type="submit" value="&#10060;" style="border: none; background: none">
+                            <input type="button" value="&#10060;" style="border: none; background: none" onclick="confirmPopUp(${order.id})">
                         </form>
                     </td>
                     <td>${order.id}</td>
