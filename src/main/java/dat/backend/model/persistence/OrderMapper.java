@@ -68,11 +68,13 @@ class OrderMapper {
         int width = rs.getInt("width");
         int height = rs.getInt("height");
         int length = rs.getInt("length");
+        boolean isInactive = rs.getBoolean("isInactive");
 
         User user = UserMapper.getUserById(userId, connectionPool);
 
         Order order = new Order(user, status, width, height,length);
         order.setId(id);
+        order.setInactive(isInactive);
         order.setMaterials(getOrderMaterials(id, connectionPool));
 
         return order;
@@ -143,6 +145,19 @@ class OrderMapper {
                    orders.add(order);
                }
                return orders;
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
+
+    protected static boolean removeOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE semesteropgave.order o SET o.isInactive = 1 WHERE o.order_id = ?";
+        try (Connection connection = connectionPool.getConnection()){
+            try (PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, orderId);
+                int rowsAffected = ps.executeUpdate();
+                return rowsAffected == 1;
             }
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());

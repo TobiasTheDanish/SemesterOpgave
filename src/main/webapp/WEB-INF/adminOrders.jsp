@@ -10,9 +10,10 @@
     <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
 
     <h1>Alle ordrer</h1>
+        <p>${requestScope.message}</p>
         <table>
             <tr style="border-bottom: 2px solid black">
-                <th></th>
+                <th>Fjern</th>
                 <th>Ordre-ID</th>
                 <th>Kunde</th>
                 <th>Status</th>
@@ -21,8 +22,15 @@
                 <th>Længde</th>
                 <th></th>
             </tr>
-            <c:forEach var="order" items="${requestScope.orders}">
+            <c:forEach var="order" items="${sessionScope.orders}">
+                <c:if test="${!order.inactive}">
                 <tr style="border-bottom: 1px solid black">
+                    <td>
+                        <form action="admindeleteorderservlet" method="post">
+                            <input type="hidden" value="${order.id}" name="orderId">
+                            <input type="submit" value="&#10060;" style="border: none; background: none">
+                        </form>
+                    </td>
                     <td>${order.id}</td>
                     <td>${order.user.username}</td>
                     <td>${order.status}</td>
@@ -36,6 +44,7 @@
                         </form>
                     </td>
                 </tr>
+                </c:if>
             </c:forEach>
         </table>
     </div>

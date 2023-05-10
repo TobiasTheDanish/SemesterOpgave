@@ -23,4 +23,8 @@ public class OrderFacade {
         return OrderMapper.viewOrder(user, connectionPool);
     }
 
+    public static boolean removeOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.removeOrder(orderId, connectionPool);
+    }
+
 }
