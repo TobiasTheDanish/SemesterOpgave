@@ -31,6 +31,9 @@
                 <div class="navbar-nav">
 
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">${sessionScope.user.username}</a>
+                    <c:if test="${sessionScope.user != null && sessionScope.user.role == 0}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/adminordersservlet">Ordrer</a>
+                    </c:if>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 3</a>
