@@ -141,4 +141,38 @@ class UserMapper
 
         return user;
     }
+
+    static User updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "update semesteropgave.user set firstName=?, lastName=?, phoneNr=?, zipCode=? where email=?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, user.getFirstName());
+                ps.setString(2, user.getLastName());
+                ps.setInt(3, user.getPhoneNr());
+                ps.setInt(4, user.getZipCode());
+                ps.setString(5, user.getUsername());
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    user.setFirstName(user.getFirstName());
+                    user.setLastName(user.getLastName());
+                    user.setPhoneNr(user.getPhoneNr());
+                    user.setZipCode(user.getZipCode());
+                    return user;
+                } else
+                {
+                    throw new DatabaseException("The user with username = " + user.getUsername() + " could not be inserted into the database");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not insert information into database");
+        }
+    }
 }

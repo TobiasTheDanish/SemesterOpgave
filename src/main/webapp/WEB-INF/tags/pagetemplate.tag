@@ -36,7 +36,7 @@
                     </c:if>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 3</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/createprofileservlet">Profile</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
