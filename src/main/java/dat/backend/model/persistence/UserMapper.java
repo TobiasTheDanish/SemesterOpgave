@@ -44,7 +44,8 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into semesteropgave.user (email, password, role) values (?,?,?)";
+
+        String sql = "INSERT INTO semesteropgave.user (email, password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -52,6 +53,10 @@ class UserMapper
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setInt(3, role);
+                ps.setString(4, "");
+                ps.setString(5, "");
+                ps.setInt(6, 0);
+                ps.setInt(7, 0);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
@@ -87,6 +92,54 @@ class UserMapper
         }
 
         return false;
+    }
+
+    protected static int getId(String email, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT user_id FROM semesteropgave.user WHERE email=?";
+
+        try (Connection connection = connectionPool.getConnection()){
+            try (PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setString(1, email);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+        //This should never happen
+        return -1;
+    }
+
+
+    public static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        User user = null;
+
+        String sql = "SELECT * FROM semesteropgave.user WHERE user_id=?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, userId);
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+                    int role = rs.getInt("role");
+                    String firstName = rs.getString("firstName");
+                    String lastName = rs.getString("lastName");
+                    int phoneNr = rs.getInt("phoneNr");
+                    int zipCode = rs.getInt("zipCode");
+
+                    return new User(email, password, role);
+                }
+            }
+        } catch (SQLException throwables) {
+            throw new DatabaseException(throwables.getMessage());
+        }
+
+        return user;
     }
 
     static User updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException

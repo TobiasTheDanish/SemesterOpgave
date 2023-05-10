@@ -11,6 +11,7 @@ public class User
     private String lastName;
     private int phoneNr;
     private int zipCode;
+    private int id;
 
     public User(String username, String password, int role)
     {
@@ -79,6 +80,14 @@ public class User
     public void setRole(int role)
     {
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

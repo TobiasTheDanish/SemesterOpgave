@@ -22,4 +22,12 @@ public class UserFacade
     public static User updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException{
         return UserMapper.updateUserProfile(user,connectionPool);
     }
+
+    public static int getId(String email, ConnectionPool connectionPool) throws DatabaseException{
+        return UserMapper.getId(email, connectionPool);
+    }
+
+    public static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.getUserById(userId, connectionPool);
+    }
 }
