@@ -22,16 +22,16 @@
 
     <jsp:body>
 
-        <h3>You can update your profile here</h3>
+        <h3>Opdater din profil</h3>
         <h4>${requestScope.errormessage}</h4>
         <form action="createprofileservlet" method="post">
-            <label for="firstName">First name: </label>
+            <label for="firstName">Fornavn: </label>
             <input type="text" id="firstName" name="firstName" value="${sessionScope.user.firstName}" required/>
-            <label for="lastName">Last name: </label>
+            <label for="lastName">Efternavn: </label>
             <input type="text" id="lastName" name="lastName" value="${sessionScope.user.lastName}" required/>
-            <label for="phoneNr">Phone number: </label>
+            <label for="phoneNr">Telefon nr: </label>
             <input type="number" id="phoneNr" name="phoneNr" value="${sessionScope.user.phoneNr}" required/>
-            <label for="zipCode">Zip Code: </label>
+            <label for="zipCode">Post nr: </label>
             <input type="number" id="zipCode" name="zipCode" value="${sessionScope.user.zipCode}" required/>
             <input type="submit" value="Create">
         </form>
