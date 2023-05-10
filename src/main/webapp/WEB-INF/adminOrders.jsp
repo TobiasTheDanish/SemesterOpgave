@@ -20,7 +20,7 @@
                 <th>Længde</th>
                 <th></th>
             </tr>
-            <c:forEach var="order" items="${requestScope.orders}">
+            <c:forEach var="order" items="${sessionScope.orders}">
                 <tr style="border-bottom: 1px solid black">
                     <td>${order.id}</td>
                     <td>${order.user.username}</td>
