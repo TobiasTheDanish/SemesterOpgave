@@ -32,7 +32,7 @@
 
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">${sessionScope.user.username}</a>
                     <c:if test="${sessionScope.user != null && sessionScope.user.role == 0}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/adminordersservlet">Ordrer</a>
+                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/adminordersservlet">Admin-Ordrer</a>
                     </c:if>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
