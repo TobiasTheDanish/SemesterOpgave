@@ -27,7 +27,18 @@ class UserMapper
                 if (rs.next())
                 {
                     int role = rs.getInt("role");
+                    String fName = rs.getString("firstName");
+                    String lName = rs.getString("lastName");
+                    int phoneNum = rs.getInt("phoneNr");
+                    int zip = rs.getInt("zipCode");
+                    int id = rs.getInt("user_id");
                     user = new User(username, password, role);
+                    user.setId(id);
+                    user.setFirstName(fName);
+                    user.setLastName(lName);
+                    user.setPhoneNr(phoneNum);
+                    user.setZipCode(zip);
+                    return user;
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -37,7 +48,6 @@ class UserMapper
         {
             throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
         }
-        return user;
     }
 
     static User createUser(String username, String password, int role, ConnectionPool connectionPool) throws DatabaseException
@@ -73,6 +83,32 @@ class UserMapper
         }
         return user;
     }
+
+
+    //TODO check this method. UserID/Email idk what to use.
+    public static User getUser(int id, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM user WHERE user_id=?";
+
+        try (Connection connection = connectionPool.getConnection()){
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String email = rs.getString("email");
+                String pw = rs.getString("password");
+                int role = rs.getInt("role");
+
+                return new User(email, pw, role);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+        return null;
+    }
+
 
 
     protected static boolean doesUserExist(String email, ConnectionPool connectionPool) throws DatabaseException {

@@ -14,6 +14,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static dat.backend.model.entities.Status.*;
+import java.util.ArrayList;
+import java.util.List;
+
 class OrderMapper {
     protected static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Order> result = new ArrayList<>();
@@ -114,8 +118,34 @@ class OrderMapper {
                     return rowsAffected == 1;
                 }
 
-            } catch (SQLException e) {
-                throw new DatabaseException(e.getMessage());
-            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
         }
+
+    }
+
+    protected static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException{
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM `order` WHERE user_id = ?";
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)) {
+               ps.setInt(1, user.getId());
+               ResultSet rs = ps.executeQuery();
+               while (rs.next()){
+
+                   int id = rs.getInt("order_id");
+                   int width = rs.getInt("width");
+                   int height = rs.getInt("height");
+                   int length = rs.getInt("length");
+                   int statusOrdinal = rs.getInt("status");
+                   Order order = new Order(user, Status.values()[statusOrdinal], width, height, length);
+                   order.setId(id);
+                   orders.add(order);
+               }
+               return orders;
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
 }

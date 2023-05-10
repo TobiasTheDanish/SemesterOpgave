@@ -18,10 +18,10 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #003d76; border-bottom: 2px solid white">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
-                <img src="${pageContext.request.contextPath}/images/cphbusiness.png" width="400px;" class="img-fluid"/>
+                <img src="${pageContext.request.contextPath}/images/fogImage.jpg" width="200px;" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,18 +30,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
 
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">${sessionScope.user.username}</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">${sessionScope.user.username}</a>
                     <c:if test="${sessionScope.user != null && sessionScope.user.role == 0}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/adminordersservlet">Ordrer</a>
+                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/adminordersservlet">Admin-Ordrer</a>
                     </c:if>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/createprofileservlet">Profile</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createprofileservlet">Profile</a>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 3rem" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 3rem" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>
@@ -55,20 +55,20 @@
 </div>
 
 <!-- Footer -->
-<div class="container mt-3">
+<div class="container mt-3" style="color: white; text-align: center">
     <hr/>
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
+            Firskovvej 20 <br/>
             2800 Lyngby
         </div>
         <div class="col">
             <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; 2022 Cphbusiness</p>
+            <p>CVR-nr. 16314439</p>
         </div>
         <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester efterår 2022
+            Johannes Fog &copy;<br/>
+            Byggematerialer siden 1920
         </div>
     </div>
 
