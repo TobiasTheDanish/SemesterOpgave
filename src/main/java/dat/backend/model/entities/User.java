@@ -7,6 +7,10 @@ public class User
     private String username;
     private String password;
     private int role;
+    private String firstName;
+    private String lastName;
+    private int phoneNr;
+    private int zipCode;
     private int id;
 
     public User(String username, String password, int role)
@@ -14,6 +18,38 @@ public class User
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getPhoneNr() {
+        return phoneNr;
+    }
+
+    public void setPhoneNr(int phoneNr) {
+        this.phoneNr = phoneNr;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getUsername()

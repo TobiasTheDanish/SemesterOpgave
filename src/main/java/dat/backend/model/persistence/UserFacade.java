@@ -29,4 +29,8 @@ public class UserFacade
     public static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getUserById(userId, connectionPool);
     }
+
+    public static User updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException{
+        return UserMapper.updateUserProfile(user,connectionPool);
+    }
 }
