@@ -105,7 +105,7 @@ class OrderMapper {
     }
 
     protected static boolean createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
-            String sql = "INSERT INTO semesteropgave.order (user_id, status, width, height, length) values (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO semesteropgave.order (user_id, status, width, height, length, isInactive) values (?, ?, ?, ?, ?, ?)";
             try (Connection connection = connectionPool.getConnection()) {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ps.setInt(1, order.getUser().getId());
@@ -113,6 +113,7 @@ class OrderMapper {
                     ps.setInt(3, order.getWidth());
                     ps.setInt(4, order.getHeight());
                     ps.setInt(5, order.getLength());
+                    ps.setBoolean(6, order.isInactive());
 
                     int rowsAffected = ps.executeUpdate();
 
