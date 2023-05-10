@@ -5,18 +5,14 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Ordrer
-    </jsp:attribute>
 
-    <jsp:attribute name="footer">
-            Ordrer
-    </jsp:attribute>
+    <body style="background: #003d76; color: black; text-align: center">
+    <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
 
-    <jsp:body>
+    <h1>Alle ordrer</h1>
         <table>
-            <tr>
-                <th>Ordre ID</th>
+            <tr style="border-bottom: 2px solid black">
+                <th>Ordre-ID</th>
                 <th>Kunde</th>
                 <th>Status</th>
                 <th>Bredde</th>
@@ -25,7 +21,7 @@
                 <th></th>
             </tr>
             <c:forEach var="order" items="${requestScope.orders}">
-                <tr>
+                <tr style="border-bottom: 1px solid black">
                     <td>${order.id}</td>
                     <td>${order.user.username}</td>
                     <td>${order.status}</td>
@@ -35,12 +31,13 @@
                     <td>
                         <form action="adminvieworderservlet">
                             <input type="hidden" value="${order.id}" name="orderId">
-                            <input type="submit" value="Se info">
+                            <input type="submit" value="Se info" style="background: #003d76; border: none; color: white; border-radius: 25px; padding: 5px 12px;">
                         </form>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-    </jsp:body>
+    </div>
+    </body>
 
 </t:pagetemplate>

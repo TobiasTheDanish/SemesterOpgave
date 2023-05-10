@@ -28,7 +28,7 @@ public class AdminViewOrderServlet extends HttpServlet {
             Order order = OrderFacade.getOrderById(orderId, connectionPool);
 
             request.setAttribute("order", order);
-            request.getRequestDispatcher("WEB-INF/viewOrderInfo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/adminViewOrderInfo.jsp").forward(request, response);
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", "Kunne ikke finde en ordre med dette id");
             request.getRequestDispatcher("error.jsp").forward(request, response);

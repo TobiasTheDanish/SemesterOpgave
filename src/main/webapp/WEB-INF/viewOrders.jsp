@@ -11,13 +11,32 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 <t:pagetemplate>
 
-<body style="background: #003d76;">
-    <div style="color: black; background: white; padding: 2rem">
-    <h1>Mine ordrer</h1>
-    <c:forEach var="order" items="${requestScope.orders}">
-        <h5>Ordre: ${order.id}</h5>
-        <p class="card-subtitle text-secondary">Status: ${order.status}</p>
-    </c:forEach>
+    <body style="background: #003d76; text-align: center">
+    <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
+        <h1>Mine ordrer</h1>
+
+        <table>
+            <tr style="border-bottom: 2px solid black">
+                <th>Ordre-ID</th>
+                <th>Status</th>
+                <th>Bredde</th>
+                <th>Højde</th>
+                <th>Længde</th>
+            </tr>
+
+            <c:forEach var="order" items="${requestScope.orders}">
+                <tr style="border-bottom: 1px solid black">
+                    <td>${order.id}</td>
+                    <td>${order.status}</td>
+                    <td>${order.width}</td>
+                    <td>${order.height}</td>
+                    <td>${order.length}</td>
+                </tr>
+            </c:forEach>
+
+
+        </table>
+
     </div>
-</body>
+    </body>
 </t:pagetemplate>

@@ -33,7 +33,12 @@ class UserMapper
                     int zip = rs.getInt("zipCode");
                     int id = rs.getInt("user_id");
                     user = new User(username, password, role);
-                   
+                    user.setId(id);
+                    user.setFirstName(fName);
+                    user.setLastName(lName);
+                    user.setPhoneNr(phoneNum);
+                    user.setZipCode(zip);
+                    return user;
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -43,7 +48,6 @@ class UserMapper
         {
             throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
         }
-        return user;
     }
 
     static User createUser(String username, String password, int role, ConnectionPool connectionPool) throws DatabaseException
