@@ -39,9 +39,6 @@ public class CreateUserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        URL url = new URL(request.getHeader("Referer"));
-        String senderPath = url.getPath();
-
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirmation = request.getParameter("confirmPassword");
