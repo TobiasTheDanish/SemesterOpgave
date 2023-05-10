@@ -16,6 +16,7 @@
     <jsp:body>
         <table>
             <tr>
+                <th></th>
                 <th>Ordre ID</th>
                 <th>Kunde</th>
                 <th>Status</th>
