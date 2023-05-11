@@ -13,7 +13,6 @@
 
         <c:if test="${sessionScope.user == null}">
             <h1>Velkommen til Johannes Fog</h1>
-
         </c:if>
         </div>
     </body>
