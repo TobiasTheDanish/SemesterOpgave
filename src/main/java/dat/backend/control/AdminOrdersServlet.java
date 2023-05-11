@@ -17,27 +17,45 @@ import java.util.regex.MatchResult;
 @WebServlet(name = "adminordersservlet", value = "/adminordersservlet")
 public class AdminOrdersServlet extends HttpServlet {
     private ConnectionPool connectionPool;
+    private long lastGetOrdersCall;
 
     @Override
-    public void init() throws ServletException
+    public void init()
     {
         this.connectionPool = ApplicationStart.getConnectionPool();
+        this.lastGetOrdersCall = 0;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<Order> orders = OrderFacade.getAllOrders(connectionPool);
+        List<Order> orders = (List<Order>) request.getSession().getAttribute("orders");
+        HttpSession session = request.getSession();
 
-            request.getSession().setAttribute("orders", orders);
+        if (orders == null || orders.size() == 0 || shouldGetOrders()) {
+            try {
+                orders = OrderFacade.getAllOrdersWithoutMaterials(connectionPool);
+                lastGetOrdersCall = System.currentTimeMillis();
+
+                session.setAttribute("orders", orders);
+                request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
+                for (Order order : orders) {
+                    order.setMaterials(OrderFacade.getOrderMaterials(order.getId(), connectionPool));
+                }
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            }
+        } else {
             request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
-        } catch (DatabaseException e) {
-            e.printStackTrace();
+            System.out.println("else block");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    private boolean shouldGetOrders() {
+        return lastGetOrdersCall + 5000 <= System.currentTimeMillis();
     }
 }

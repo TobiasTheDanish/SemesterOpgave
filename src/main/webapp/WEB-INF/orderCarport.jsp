@@ -13,8 +13,8 @@
 <head>
     <title>Order Carport</title>
 </head>
-<body style="background: #003d76; text-align: center">
-<div class="container p-5" style="min-height: 50rem; background: white">
+<body class="bodyBackground">
+<div class="container p-5 mainBox">
     <div style="">
     <h1><span>Bestilling af carport</span></h1>
     <p><span>Velkommen til vores side for specialbestilling af carporte hos Johannes Fog.
