@@ -40,7 +40,6 @@ public class EditOrderServlet extends HttpServlet {
             List<Order> userOrders = OrderFacade.viewOrder(user, connectionPool);
             for (Order o : userOrders) {
                 if (o.getId() == orderId ) {
-                    System.out.println("krelles mor er lækker");
                     o.setWidth(width);
                     o.setHeight(height);
                     o.setLength(length);
