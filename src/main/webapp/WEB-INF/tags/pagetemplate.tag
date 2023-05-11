@@ -64,7 +64,7 @@
         </div>
         <div class="col">
             <jsp:invoke fragment="footer"/><br/>
-            <p>CVR-nr. 16314439</p>
+            <p>CVR-nr. xxxxxx89</p>
         </div>
         <div class="col">
             Johannes Fog &copy;<br/>

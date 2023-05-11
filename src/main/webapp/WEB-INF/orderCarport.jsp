@@ -29,42 +29,46 @@
     <div style="display: flex; justify-content: center">
 <form method="post" action="ordercarportservlet">
     <div style="margin: 5px 5px"> <br> <br>
-    <label for="width" style="font-size: 24px">Bredde (cm)</label> <br>
+    <label for="width" style="font-size: 24px">Bredde</label> <br>
     <select id="width" name="width" required="required" style="padding: 2px 40px">
-        <option value="400">400</option>
-        <option value="450">450</option>
-        <option value="500">500</option>
-        <option value="550">550</option>
-        <option value="600">600</option>
-        <option value="650">650</option>
-        <option value="700">700</option>
-        <option value="750">750</option>
+        <option value="250">250 cm</option>
+        <option value="300">300 cm</option>
+        <option value="350">350 cm</option>
+        <option value="400">400 cm</option>
+        <option value="450">450 cm</option>
+        <option value="500">500 cm</option>
+        <option value="550">550 cm</option>
+        <option value="600">600 cm</option>
+        <option value="650">650 cm</option>
+        <option value="700">700 cm</option>
+        <option value="750">750 cm</option>
     </select> <br>
     </div>
     <div style="margin: 10px 5px">
-    <label for="height" style="font-size: 24px">Højde (cm)</label> <br>
+    <label for="height" style="font-size: 24px">Højde</label> <br>
     <select id="height" name="height" required="required" style="padding: 2px 40px">
-        <option value="400">400</option>
-        <option value="450">450</option>
-        <option value="500">500</option>
-        <option value="550">550</option>
-        <option value="600">600</option>
-        <option value="650">650</option>
-        <option value="700">700</option>
-        <option value="750">750</option>
+        <option value="200">200 cm</option>
+        <option value="250">250 cm</option>
+        <option value="300">300 cm</option>
+        <option value="350">350 cm</option>
+        <option value="400">400 cm</option>
+        <option value="450">450 cm</option>
+        <option value="500">500 cm</option>
+        <option value="550">550 cm</option>
+        <option value="600">600 cm</option>
     </select> <br>
     </div>
     <div style="margin: 10px 5px">
-    <label for="length" style="font-size: 24px">Længde (cm)</label> <br>
+    <label for="length" style="font-size: 24px">Længde</label> <br>
     <select id="length" name="length" required="required" style="padding: 2px 40px">
-        <option value="400">400</option>
-        <option value="450">450</option>
-        <option value="500">500</option>
-        <option value="550">550</option>
-        <option value="600">600</option>
-        <option value="650">650</option>
-        <option value="700">700</option>
-        <option value="750">750</option>
+        <option value="400">400 cm</option>
+        <option value="450">450 cm</option>
+        <option value="500">500 cm</option>
+        <option value="550">550 cm</option>
+        <option value="600">600 cm</option>
+        <option value="650">650 cm</option>
+        <option value="700">700 cm</option>
+        <option value="750">750 cm</option>
     </select> <br>
     </div>
     <div style="display: flex; justify-content: center; margin: 2rem">
