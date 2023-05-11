@@ -171,6 +171,8 @@ class OrderMapper {
                 int rowsAffected = ps.executeUpdate();
                 return rowsAffected == 1;
             }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
         }
     }
          
