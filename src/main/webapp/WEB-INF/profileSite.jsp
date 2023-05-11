@@ -10,31 +10,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
+<head>
+    <link href="/css/style.css">
+</head>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Profile information
-    </jsp:attribute>
 
-    <jsp:attribute name="footer">
-            Profile information
-    </jsp:attribute>
-
-    <jsp:body>
-
-        <h3>You can update your profile here</h3>
+    <body class="bodyBackground">
+        <div class="mainBox">
+        <h3>Du kan opdatere din profil her</h3>
         <h4>${requestScope.errormessage}</h4>
         <form action="createprofileservlet" method="post">
-            <label for="firstName">First name: </label>
-            <input type="text" id="firstName" name="firstName" value="${sessionScope.user.firstName}" required/>
-            <label for="lastName">Last name: </label>
-            <input type="text" id="lastName" name="lastName" value="${sessionScope.user.lastName}" required/>
-            <label for="phoneNr">Phone number: </label>
-            <input type="number" id="phoneNr" name="phoneNr" value="${sessionScope.user.phoneNr}" required/>
-            <label for="zipCode">Zip Code: </label>
-            <input type="number" id="zipCode" name="zipCode" value="${sessionScope.user.zipCode}" required/>
-            <input type="submit" value="Create">
+            <label for="firstName">Fornavn: </label> <br>
+            <input type="text" id="firstName" name="firstName" value="${sessionScope.user.firstName}" required/> <br>
+            <label for="lastName">Efternavn: </label> <br>
+            <input type="text" id="lastName" name="lastName" value="${sessionScope.user.lastName}" required/> <br>
+            <label for="phoneNr">Telefonnummer: </label> <br>
+            <input type="number" id="phoneNr" name="phoneNr" value="${sessionScope.user.phoneNr}" required/> <br>
+            <label for="zipCode">Postnummer: </label> <br>
+            <input type="number" id="zipCode" name="zipCode" value="${sessionScope.user.zipCode}" required/> <br>
+            <input type="submit" value="Opdatér" class="buttonBlue" style="margin-top: 2rem;">
         </form>
-
-    </jsp:body>
+        </div>
+    </body>
 </t:pagetemplate>
