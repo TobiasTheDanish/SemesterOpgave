@@ -14,10 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dat.backend.model.entities.Status.*;
-import java.util.ArrayList;
-import java.util.List;
-
 class OrderMapper {
     protected static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Order> result = new ArrayList<>();
@@ -165,6 +161,7 @@ class OrderMapper {
         }
     }
 
+
     protected static boolean updateStatus(int statusOrdinal, int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE semesteropgave.order o SET o.status = ? WHERE o.order_id = ?";
         try (Connection connection = connectionPool.getConnection()){
@@ -174,9 +171,40 @@ class OrderMapper {
                 int rowsAffected = ps.executeUpdate();
                 return rowsAffected == 1;
             }
+        }
+    }
+         
+
+    protected static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
+        List<Order> result = new ArrayList<>();
+
+        String sql = "SELECT * FROM semesteropgave.order";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int id = rs.getInt("order_id");
+                    int userId = rs.getInt("user_id");
+                    Status status = Status.values()[rs.getInt("status")];
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
+                    int length = rs.getInt("length");
+                    boolean isInactive = rs.getBoolean("isInactive");
+
+                    User user = UserMapper.getUserById(userId, connectionPool);
+
+                    Order order = new Order(user, status, width, height,length);
+                    order.setId(id);
+                    order.setInactive(isInactive);
+
+                    result.add(order);
+                }
+            }
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
         }
-
+        return result;
     }
 }

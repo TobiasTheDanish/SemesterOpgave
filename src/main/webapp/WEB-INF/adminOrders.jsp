@@ -8,8 +8,6 @@
 </head>
 
 <t:pagetemplate>
-
-
     <body class="bodyBackground">
     <div class="mainBox" style="display: flex; align-content: center; flex-direction: column;">
 

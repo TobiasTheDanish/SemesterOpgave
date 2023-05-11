@@ -149,7 +149,7 @@ class UserMapper
     }
 
 
-    public static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
+    static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
         User user = null;
 
         String sql = "SELECT * FROM semesteropgave.user WHERE user_id=?";
@@ -168,14 +168,20 @@ class UserMapper
                     int phoneNr = rs.getInt("phoneNr");
                     int zipCode = rs.getInt("zipCode");
 
-                    return new User(email, password, role);
+                    user = new User(email, password, role);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setPhoneNr(phoneNr);
+                    user.setZipCode(zipCode);
+
+                    return user;
                 }
             }
         } catch (SQLException throwables) {
             throw new DatabaseException(throwables.getMessage());
         }
 
-        return user;
+        return null;
     }
 
     static User updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException
