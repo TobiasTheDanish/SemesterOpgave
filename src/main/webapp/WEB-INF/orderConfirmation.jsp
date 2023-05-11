@@ -13,8 +13,8 @@
 <head>
     <title>Title</title>
 </head>
-<body style="background: #003d76; color: black">
-<div style="background: white; min-height: 40rem; padding: 2rem">
+<body class="bodyBackground">
+<div class="mainBox">
 <h1>Kvitteringsside</h1>
 <h3>Du har bestilt en carport med følgende mål:</h3>
 <p>

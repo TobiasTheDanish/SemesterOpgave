@@ -29,6 +29,10 @@ public class OrderFacade {
         return OrderMapper.removeOrder(orderId, connectionPool);
     }
 
+    public static boolean updateStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.updateStatus(status, orderId, connectionPool);
+    }
+
     public static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.getAllOrdersWithoutMaterials(connectionPool);
     }
