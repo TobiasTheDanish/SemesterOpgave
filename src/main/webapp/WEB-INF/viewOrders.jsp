@@ -37,14 +37,14 @@
                             <form action="viewordersservlet" method="post">
                                 <input type="hidden" name="vieworder" value="${order.id}">
                                 <input type="hidden" name="action" value="Remove">
-                                <input type="submit" value="Fjern">
+                                <input type="submit" value="Fjern" class="buttonBlue">
                             </form>
                         </td>
                         <td>
                             <form action="viewordersservlet" method="post">
                                 <input type="hidden" name="vieworder" value="${order.id}">
                                 <input type="hidden" name="action" value="Edit">
-                                <input type="submit" value="Rediger">
+                                <input type="submit" value="Rediger" class="buttonBlue">
                             </form>
                         </td>
                     </tr>
