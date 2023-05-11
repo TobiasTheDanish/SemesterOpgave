@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dat.backend.model.entities.Status.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +73,7 @@ class OrderMapper {
 
         User user = UserMapper.getUserById(userId, connectionPool);
 
-        Order order = new Order(user, status, width, height,length);
+        Order order = new Order(user, status, width, height, length);
         order.setId(id);
         order.setInactive(isInactive);
         order.setMaterials(getOrderMaterials(id, connectionPool));
@@ -105,21 +106,21 @@ class OrderMapper {
     }
 
     protected static boolean createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
-            String sql = "INSERT INTO semesteropgave.order (user_id, status, width, height, length, isInactive) values (?, ?, ?, ?, ?, ?)";
-            try (Connection connection = connectionPool.getConnection()) {
-                try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, order.getUser().getId());
-                    ps.setInt(2, order.getStatus().ordinal());
-                    ps.setInt(3, order.getWidth());
-                    ps.setInt(4, order.getHeight());
-                    ps.setInt(5, order.getLength());
-                    ps.setBoolean(6, order.isInactive());
+        String sql = "INSERT INTO semesteropgave.order (user_id, status, width, height, length, isInactive) values (?, ?, ?, ?, ?, ?)";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order.getUser().getId());
+                ps.setInt(2, order.getStatus().ordinal());
+                ps.setInt(3, order.getWidth());
+                ps.setInt(4, order.getHeight());
+                ps.setInt(5, order.getLength());
+                ps.setBoolean(6, order.isInactive());
 
-                    int rowsAffected = ps.executeUpdate();
+                int rowsAffected = ps.executeUpdate();
 
-                    //Returns true if the order was created, otherwise returns false.
-                    return rowsAffected == 1;
-                }
+                //Returns true if the order was created, otherwise returns false.
+                return rowsAffected == 1;
+            }
 
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
@@ -127,28 +128,28 @@ class OrderMapper {
 
     }
 
-    protected static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException{
+    protected static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException {
         List<Order> orders = new ArrayList<>();
         String sql = "SELECT * FROM `order` WHERE user_id = ?";
-        try(Connection connection = connectionPool.getConnection()){
+        try (Connection connection = connectionPool.getConnection()) {
 
-            try(PreparedStatement ps = connection.prepareStatement(sql)) {
-               ps.setInt(1, user.getId());
-               ResultSet rs = ps.executeQuery();
-               while (rs.next()){
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, user.getId());
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
 
-                   int id = rs.getInt("order_id");
-                   int width = rs.getInt("width");
-                   int height = rs.getInt("height");
-                   int length = rs.getInt("length");
-                   boolean isInactive = rs.getBoolean("isInactive");
-                   int statusOrdinal = rs.getInt("status");
-                   Order order = new Order(user, Status.values()[statusOrdinal], width, height, length);
-                   order.setId(id);
-                   order.setInactive(isInactive);
-                   orders.add(order);
-               }
-               return orders;
+                    int id = rs.getInt("order_id");
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
+                    int length = rs.getInt("length");
+                    boolean isInactive = rs.getBoolean("isInactive");
+                    int statusOrdinal = rs.getInt("status");
+                    Order order = new Order(user, Status.values()[statusOrdinal], width, height, length);
+                    order.setId(id);
+                    order.setInactive(isInactive);
+                    orders.add(order);
+                }
+                return orders;
             }
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
@@ -157,8 +158,8 @@ class OrderMapper {
 
     protected static boolean removeOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE semesteropgave.order o SET o.isInactive = 1 WHERE o.order_id = ?";
-        try (Connection connection = connectionPool.getConnection()){
-            try (PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
                 int rowsAffected = ps.executeUpdate();
                 return rowsAffected == 1;
@@ -167,4 +168,22 @@ class OrderMapper {
             throw new DatabaseException(e.getMessage());
         }
     }
+
+    protected static boolean editOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE semesteropgave.order o SET o.width = ?, o.height = ?, o.length = ? WHERE o.order_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order.getWidth());
+                ps.setInt(2, order.getHeight());
+                ps.setInt(3, order.getLength());
+                ps.setInt(4, order.getId());
+                int rowsAffected = ps.executeUpdate();
+                return rowsAffected == 1;
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
+    }
+
 }

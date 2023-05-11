@@ -40,6 +40,13 @@
                                 <input type="submit" value="Fjern">
                             </form>
                         </td>
+                        <td>
+                            <form action="viewordersservlet" method="post">
+                                <input type="hidden" name="vieworder" value="${order.id}">
+                                <input type="hidden" name="action" value="Edit">
+                                <input type="submit" value="Rediger">
+                            </form>
+                        </td>
                     </tr>
                 </c:if>
             </c:forEach>

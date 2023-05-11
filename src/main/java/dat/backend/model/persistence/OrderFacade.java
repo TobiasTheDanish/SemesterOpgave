@@ -19,12 +19,16 @@ public class OrderFacade {
         return OrderMapper.createOrder(order, connectionPool);
     }
 
-    public static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException{
+    public static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.viewOrder(user, connectionPool);
     }
 
     public static boolean removeOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.removeOrder(orderId, connectionPool);
+    }
+
+    public static boolean editOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.editOrder(order, connectionPool);
     }
 
 }

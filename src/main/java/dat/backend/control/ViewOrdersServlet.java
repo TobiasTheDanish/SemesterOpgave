@@ -48,22 +48,34 @@ public class ViewOrdersServlet extends HttpServlet {
 
         if (action != null && action.equals("Remove")) {
             try {
-             if(OrderFacade.removeOrder(order,connectionPool)){
-                 for(Order o:orders){
-                     if(o.getId() == order){
+             if(OrderFacade.removeOrder(order,connectionPool)) {
+                 for (Order o : orders) {
+                     if (o.getId() == order) {
                          o.setInactive(true);
                          break;
                      }
                  }
-                 request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request,response);
+                 request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request, response);
 
-             } else{
-                 System.out.println("Christians mor er lækker");
              }
+
             } catch (DatabaseException e) {
                 e.printStackTrace();
             }
-
+        }
+        if (action != null && action.equals("Edit")) {
+            for(Order o: orders){
+                if(o.getId() == order){
+                    request.setAttribute("order", o);
+                }
+            }
+            for(Order o: orders ){
+            request.setAttribute("width", o.getWidth());
+            request.setAttribute("height", o.getHeight());
+            request.setAttribute("length", o.getLength());
+            }
+            request.setAttribute("orderId", order);
+            request.getRequestDispatcher("WEB-INF/editOrder.jsp").forward(request,response);
         }
 
     }
