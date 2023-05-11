@@ -24,18 +24,36 @@
                 <th>Længde (cm)</th>
             </tr>
 
-            <c:forEach var="order" items="${requestScope.orders}">
-                <tr style="border-bottom: 1px solid black">
-                    <td>${order.id}</td>
-                    <td>${order.status}</td>
-                    <td>${order.width}</td>
-                    <td>${order.height}</td>
-                    <td>${order.length}</td>
-                </tr>
+            <c:forEach var="order" items="${sessionScope.orders}">
+                <c:if test="${!order.inactive}">
+
+                    <tr style="border-bottom: 1px solid black">
+                        <td>${order.id}</td>
+                        <td>${order.status}</td>
+                        <td>${order.width}</td>
+                        <td>${order.height}</td>
+                        <td>${order.length}</td>
+                        <td>
+                            <form action="viewordersservlet" method="post">
+                                <input type="hidden" name="vieworder" value="${order.id}">
+                                <input type="hidden" name="action" value="Remove">
+                                <input type="submit" value="Fjern">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="viewordersservlet" method="post">
+                                <input type="hidden" name="vieworder" value="${order.id}">
+                                <input type="hidden" name="action" value="Edit">
+                                <input type="submit" value="Rediger">
+                            </form>
+                        </td>
+                    </tr>
+                </c:if>
             </c:forEach>
 
 
         </table>
+
 
     </div>
     </body>

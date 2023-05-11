@@ -21,7 +21,7 @@ public class OrderFacade {
         return OrderMapper.createOrder(order, connectionPool);
     }
 
-    public static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException{
+    public static List<Order> viewOrder(User user, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.viewOrder(user, connectionPool);
     }
 
@@ -40,4 +40,8 @@ public class OrderFacade {
     public static List<Pair<Material, Integer>> getOrderMaterials(int id, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.getOrderMaterials(id, connectionPool);
     }
+    public static boolean editOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.editOrder(order, connectionPool);
+    }
+
 }
