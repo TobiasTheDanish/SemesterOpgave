@@ -15,6 +15,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
 </head>
 <body>
 <header>
@@ -31,17 +32,17 @@
                 <div class="navbar-nav">
 
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">${sessionScope.user.username}</a>
-                    <c:if test="${sessionScope.user != null && sessionScope.user.role == 0}">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/adminordersservlet">Admin-Ordrer</a>
-                    </c:if>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil Carport</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createprofileservlet">Profile</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 3rem" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 3rem" href="${pageContext.request.contextPath}/logout">Log ud</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/ordercarportservlet">Bestil carport</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/viewordersservlet">Mine ordrer</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createprofileservlet">Profil</a>
+                    <c:if test="${sessionScope.user.role == 0}">
+                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 1rem" href="${pageContext.request.contextPath}/adminordersservlet">Admin</a>
+                    </c:if>
+                        <a class="nav-item nav-link" style="background: white; color: #003d76; border-radius: 25px; padding: 8px 15px; margin-left: 1rem" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>

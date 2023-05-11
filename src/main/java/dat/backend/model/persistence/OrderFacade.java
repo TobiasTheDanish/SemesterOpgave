@@ -1,8 +1,10 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.entities.Material;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
+import org.javatuples.Pair;
 
 import java.util.List;
 
@@ -23,4 +25,19 @@ public class OrderFacade {
         return OrderMapper.viewOrder(user, connectionPool);
     }
 
+    public static boolean removeOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.removeOrder(orderId, connectionPool);
+    }
+
+    public static boolean updateStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.updateStatus(status, orderId, connectionPool);
+    }
+
+    public static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.getAllOrdersWithoutMaterials(connectionPool);
+    }
+
+    public static List<Pair<Material, Integer>> getOrderMaterials(int id, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.getOrderMaterials(id, connectionPool);
+    }
 }

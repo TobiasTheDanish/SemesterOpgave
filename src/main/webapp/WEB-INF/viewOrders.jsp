@@ -11,17 +11,17 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 <t:pagetemplate>
 
-    <body style="background: #003d76; text-align: center">
-    <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
+    <body class="bodyBackground">
+    <div class="mainBox" style="display: flex; align-content: center; flex-direction: column;">
         <h1>Mine ordrer</h1>
 
         <table>
             <tr style="border-bottom: 2px solid black">
                 <th>Ordre-ID</th>
                 <th>Status</th>
-                <th>Bredde</th>
-                <th>Højde</th>
-                <th>Længde</th>
+                <th>Bredde (cm)</th>
+                <th>Højde (cm)</th>
+                <th>Længde (cm)</th>
             </tr>
 
             <c:forEach var="order" items="${requestScope.orders}">

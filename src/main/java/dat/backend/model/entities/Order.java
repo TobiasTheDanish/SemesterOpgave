@@ -13,6 +13,7 @@ public class Order {
     private int height;
     private int length;
     private List<Pair<Material, Integer>> materials;
+    private boolean isInactive;
 
     public Order(User user, Status status, int width, int height, int length) {
         this.id = 0;
@@ -22,10 +23,19 @@ public class Order {
         this.height = height;
         this.length = length;
         this.materials = new ArrayList<>();
+        this.isInactive = false;
     }
 
     public int getId() {
         return id;
+    }
+
+    public boolean isInactive() {
+        return isInactive;
+    }
+
+    public void setInactive(boolean inactive) {
+        isInactive = inactive;
     }
 
     public void setId(int id) {
