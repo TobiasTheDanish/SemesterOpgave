@@ -37,7 +37,7 @@
                             <form action="viewordersservlet" method="post">
                                 <input type="hidden" name="vieworder" value="${order.id}">
                                 <input type="hidden" name="action" value="Remove">
-                                <input type="submit" value="Fjern" class="buttonBlue">
+                                <input type="submit" value="Fjern" class="buttonBlue" onclick="confirmPopUp(${order.id})">
                             </form>
                         </td>
                         <td>
