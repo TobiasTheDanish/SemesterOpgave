@@ -19,9 +19,9 @@
             <tr style="border-bottom: 2px solid black">
                 <th>Ordre-ID</th>
                 <th>Status</th>
-                <th>Bredde</th>
-                <th>Højde</th>
-                <th>Længde</th>
+                <th>Bredde (cm)</th>
+                <th>Højde (cm)</th>
+                <th>Længde (cm)</th>
             </tr>
 
             <c:forEach var="order" items="${requestScope.orders}">

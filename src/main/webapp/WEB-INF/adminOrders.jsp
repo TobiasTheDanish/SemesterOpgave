@@ -21,9 +21,9 @@
                 <th>Ordre-ID</th>
                 <th>Kunde</th>
                 <th>Status</th>
-                <th>Bredde</th>
-                <th>Højde</th>
-                <th>Længde</th>
+                <th>Bredde (cm)</th>
+                <th>Højde (cm)</th>
+                <th>Længde (cm)</th>
                 <th></th>
                 <th></th>
                 <th></th>
