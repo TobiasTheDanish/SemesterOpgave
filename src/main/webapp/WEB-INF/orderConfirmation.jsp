@@ -18,9 +18,9 @@
 <h1>Kvitteringsside</h1>
 <h3>Du har bestilt en carport med følgende mål:</h3>
 <p>
-    Bredde: ${requestScope.order.width}<br>
-    Højde: ${requestScope.order.height}<br>
-    Længde: ${requestScope.order.length}<br>
+    Bredde: ${requestScope.order.width} cm<br>
+    Højde: ${requestScope.order.height} cm<br>
+    Længde: ${requestScope.order.length} cm<br>
 </p>
 <h3>For yderligere spørgsmål kontakt:</h3>
 <p> Tobias Horne Christiansen <br>
