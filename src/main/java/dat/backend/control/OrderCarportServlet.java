@@ -55,6 +55,7 @@ public class OrderCarportServlet extends HttpServlet {
             }
 
         } catch (DatabaseException e) {
+            e.printStackTrace();
             request.getRequestDispatcher("WEB-INF/orderCarport.jsp").forward(request, response);
         }
 

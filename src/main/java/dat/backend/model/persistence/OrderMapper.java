@@ -7,10 +7,7 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import org.javatuples.Pair;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +105,7 @@ class OrderMapper {
     protected static boolean createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO semesteropgave.order (user_id, status, width, height, length, isInactive) values (?, ?, ?, ?, ?, ?)";
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, order.getUser().getId());
                 ps.setInt(2, order.getStatus().ordinal());
                 ps.setInt(3, order.getWidth());
@@ -117,7 +114,10 @@ class OrderMapper {
                 ps.setBoolean(6, order.isInactive());
 
                 int rowsAffected = ps.executeUpdate();
-
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    order.setId(rs.getInt(1));
+                }
                 //Returns true if the order was created, otherwise returns false.
                 return rowsAffected == 1;
             }
