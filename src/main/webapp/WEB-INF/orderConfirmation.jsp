@@ -15,7 +15,7 @@
 </head>
 <body class="bodyBackground">
 <div class="mainBox">
-<h1>Kvitteringsside</h1>
+<h1>Kvittering #${requestScope.order.id}</h1>
 <h3>Du har bestilt en carport med følgende mål:</h3>
 <p>
     Bredde: ${requestScope.order.width} cm<br>
