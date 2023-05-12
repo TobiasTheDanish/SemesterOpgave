@@ -7,12 +7,6 @@
 
     <body class="bodyBackground">
         <div class="mainBox">
-        <c:if test="${sessionScope.user != null}">
-        </c:if>
-
-        <c:if test="${sessionScope.user == null}">
-        </c:if>
-
             <div>
                 <h1>Velkommen til Johannes Fog</h1>
                 <p>Vi er specialiseret i at levere skræddersyede carporte i præcis de mål,

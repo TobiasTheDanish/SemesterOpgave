@@ -55,7 +55,7 @@ class UserMapper
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
 
-        String sql = "INSERT INTO semesteropgave.user (email, password, role) values (?,?,?)";
+        String sql = "INSERT INTO semesteropgave.user (email, password, role, firstName, lastName, phoneNr, zipCode) values (?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))

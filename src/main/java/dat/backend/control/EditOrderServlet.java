@@ -31,27 +31,27 @@ public class EditOrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        User user = (User) request.getSession().getAttribute("user");
+        List<Order> orders = (List<Order>) request.getSession().getAttribute("orders");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         int width = Integer.parseInt(request.getParameter("width"));
         int height = Integer.parseInt(request.getParameter("height"));
         int length = Integer.parseInt(request.getParameter("length"));
         try {
-            List<Order> userOrders = OrderFacade.viewOrder(user, connectionPool);
-            for (Order o : userOrders) {
+            for (Order o : orders) {
                 if (o.getId() == orderId ) {
                     o.setWidth(width);
                     o.setHeight(height);
                     o.setLength(length);
-                    OrderFacade.editOrder(o, connectionPool);
-                    request.getRequestDispatcher("viewordersservlet");
-
+                    if (!OrderFacade.editOrder(o, connectionPool)) {
+                        request.setAttribute("errormessage", "Kunne ikke gemme ændring.");
+                    }
+                    break;
                 }
             }
+            request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request, response);
         } catch (DatabaseException e) {
             e.printStackTrace();
-            request.setAttribute("errormessage", "Kunne ikke gemme ændring.");
+            request.setAttribute("errormessage", e.getMessage());
         }
-        request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request, response);
     }
 }

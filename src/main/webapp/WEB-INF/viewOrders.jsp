@@ -33,18 +33,19 @@
                         <td>${order.width}</td>
                         <td>${order.height}</td>
                         <td>${order.length}</td>
+                        <c:if test="${order.status.ordinal() == 0}">
                         <td>
                             <form action="viewordersservlet" method="post">
                                 <input type="hidden" name="vieworder" value="${order.id}">
-                                <input type="hidden" name="action" value="Remove">
-                                <input type="submit" value="Fjern" class="buttonBlue" onclick="confirmPopUp(${order.id})">
+                                <input type="hidden" name="action" value="Edit">
+                                <input type="submit" value="Rediger" class="buttonBlue" onclick="confirmPopUp(${order.id})">
                             </form>
                         </td>
                         <td>
                             <form action="viewordersservlet" method="post">
                                 <input type="hidden" name="vieworder" value="${order.id}">
-                                <input type="hidden" name="action" value="Edit">
-                                <input type="submit" value="Rediger" class="buttonBlue">
+                                <input type="hidden" name="action" value="Remove">
+                                <input type="submit" value="Fjern" class="buttonBlue">
                             </form>
                         </td>
                     </tr>

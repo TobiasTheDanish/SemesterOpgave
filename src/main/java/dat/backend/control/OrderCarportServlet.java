@@ -27,12 +27,18 @@ public class OrderCarportServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        if(user.getUsername() == null || user.getLastName() == null || user.getPhoneNr() == 0 || user.getZipCode() == 0){
+            request.setAttribute("errormessage", "Du skal oprette din profil før du kan bestille en carport.");
+            request.getRequestDispatcher("WEB-INF/profileSite.jsp").forward(request,response);
+        }
         request.getRequestDispatcher("WEB-INF/orderCarport.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
+
         try {
             int userId = UserFacade.getId(user.getUsername(), connectionPool);
             user.setId(userId);
