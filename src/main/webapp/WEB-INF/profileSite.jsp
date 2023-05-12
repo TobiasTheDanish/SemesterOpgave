@@ -18,8 +18,8 @@
 
     <body class="bodyBackground">
         <div class="mainBox">
-        <h3>Du kan opdatere din profil her</h3>
         <h4>${requestScope.errormessage}</h4>
+        <h3>Du kan opdatere din profil her</h3>
         <form action="createprofileservlet" method="post">
             <label for="firstName">Fornavn: </label> <br>
             <input type="text" id="firstName" name="firstName" value="${sessionScope.user.firstName}" required/> <br>
