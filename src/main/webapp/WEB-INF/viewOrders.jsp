@@ -42,17 +42,21 @@
                             </form>
                         </td>
                         <td>
-                            <form action="viewordersservlet" method="post">
+                            <form action="viewordersservlet" method="post" id="removeOrder${order.id}">
                                 <input type="hidden" name="vieworder" value="${order.id}">
                                 <input type="hidden" name="action" value="Remove">
-                                <input type="submit" value="Fjern" class="buttonBlue">
+                                <input type="button" value="Fjern" class="buttonBlue" onclick="confirmPopUp(${order.id})">
                             </form>
                         </td>
-                        </c:if>
+                            </c:if>
                     </tr>
                 </c:if>
             </c:forEach>
+
+
         </table>
+
+
     </div>
     </body>
 </t:pagetemplate>
