@@ -38,16 +38,17 @@
                             <form action="viewordersservlet" method="post">
                                 <input type="hidden" name="vieworder" value="${order.id}">
                                 <input type="hidden" name="action" value="Edit">
-                                <input type="submit" value="Rediger" class="buttonBlue" onclick="confirmPopUp(${order.id})">
+                                <input type="submit" value="Rediger" class="buttonBlue">
                             </form>
                         </td>
                         <td>
-                            <form action="viewordersservlet" method="post">
+                            <form action="viewordersservlet" method="post" id="removeOrder${order.id}">
                                 <input type="hidden" name="vieworder" value="${order.id}">
                                 <input type="hidden" name="action" value="Remove">
-                                <input type="submit" value="Fjern" class="buttonBlue">
+                                <input type="button" value="Fjern" class="buttonBlue" onclick="confirmPopUp(${order.id})">
                             </form>
                         </td>
+                            </c:if>
                     </tr>
                 </c:if>
             </c:forEach>

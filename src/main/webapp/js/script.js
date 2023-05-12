@@ -5,5 +5,4 @@ function confirmPopUp(id) {
     } else {
 
     }
-    console.log(text)
 }
