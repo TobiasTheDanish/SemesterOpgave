@@ -1,5 +1,7 @@
 package dat.backend.model.entities;
 
+import java.util.Objects;
+
 public class Material {
     private int id;
     private String name;
@@ -71,5 +73,18 @@ public class Material {
 
     public void setPricePrMeter(double pricePrMeter) {
         this.pricePrMeter = pricePrMeter;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Material material = (Material) o;
+        return width == material.width && height == material.height && length == material.length && name.equals(material.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, width, height, length);
     }
 }
