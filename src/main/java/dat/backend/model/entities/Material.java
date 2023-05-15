@@ -7,6 +7,7 @@ public class Material {
     private int height;
     private int length;
     private String description;
+    private double pricePrMeter;
 
     public Material(String name, int width, int height, int length, String description) {
         this.name = name;
@@ -62,5 +63,13 @@ public class Material {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getPricePrMeter() {
+        return pricePrMeter;
+    }
+
+    public void setPricePrMeter(double pricePrMeter) {
+        this.pricePrMeter = pricePrMeter;
     }
 }

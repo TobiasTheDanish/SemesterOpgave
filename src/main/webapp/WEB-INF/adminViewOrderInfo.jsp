@@ -12,6 +12,7 @@
             <tr style="border-bottom: 2px solid black">
                 <th>Materiale</th>
                 <th>Antal</th>
+                <th>Pris</th>
                 <th>Beskrivelse</th>
                 <th>Længde</th>
                 <th>Bredde</th>
@@ -21,6 +22,7 @@
                 <tr style="border-bottom: 1px solid black">
                     <td>${material.value0.name}</td>
                     <td>${material.value1}</td>
+                    <td>${material.value0.pricePrMeter}</td>
                     <td>${material.value0.description}</td>
                     <td>${material.value0.length} cm</td>
                     <td>${material.value0.width} cm</td>

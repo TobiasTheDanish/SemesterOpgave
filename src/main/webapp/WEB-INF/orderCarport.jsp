@@ -39,9 +39,6 @@
         <option value="500">500 cm</option>
         <option value="550">550 cm</option>
         <option value="600">600 cm</option>
-        <option value="650">650 cm</option>
-        <option value="700">700 cm</option>
-        <option value="750">750 cm</option>
     </select> <br>
     </div>
     <div style="margin: 10px 5px">
@@ -59,14 +56,12 @@
     <div style="margin: 10px 5px">
     <label for="length" style="font-size: 24px">Længde</label> <br>
     <select id="length" name="length" required="required" style="padding: 2px 40px">
+        <option value="300">300 cm</option>
         <option value="400">400 cm</option>
         <option value="450">450 cm</option>
         <option value="500">500 cm</option>
         <option value="550">550 cm</option>
         <option value="600">600 cm</option>
-        <option value="650">650 cm</option>
-        <option value="700">700 cm</option>
-        <option value="750">750 cm</option>
     </select> <br>
     </div>
     <div style="display: flex; justify-content: center; margin: 2rem">
