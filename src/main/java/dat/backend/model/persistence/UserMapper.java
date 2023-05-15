@@ -26,8 +26,7 @@ class UserMapper
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     int role = rs.getInt("role");
                     String fName = rs.getString("firstName");
                     String lName = rs.getString("lastName");
@@ -41,8 +40,7 @@ class UserMapper
                     user.setPhoneNr(phoneNum);
                     user.setZipCode(zip);
                     return user;
-                } else
-                {
+                } else {
                     throw new DatabaseException("Wrong username or password");
                 }
             }
