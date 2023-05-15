@@ -42,7 +42,7 @@ class MaterialMapper {
     }
 
     protected static Material getMaterialByNameAndLength(String name, int length, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM semesteropgave.material WHERE name = ? AND length >= ? ORDER BY length ASC limit 1";
+        String sql = "SELECT * FROM material WHERE name = ? AND length >= ? ORDER BY length ASC limit 1";
         try (Connection connection = connectionPool.getConnection()){
             try (PreparedStatement ps = connection.prepareStatement(sql)){
                 ps.setString(1, name);
@@ -67,7 +67,7 @@ class MaterialMapper {
     }
 
     protected static void createOrderLink(Order order, List<Pair<Material, Integer>> materials, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "INSERT INTO semesteropgave.orderLinking (order_id, material_id, material_amount) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO orderLinking (order_id, material_id, material_amount) VALUES (?, ?, ?)";
         try (Connection connection = connectionPool.getConnection()){
             try (PreparedStatement ps = connection.prepareStatement(sql)){
                 for (Pair<Material, Integer> pair : materials){
