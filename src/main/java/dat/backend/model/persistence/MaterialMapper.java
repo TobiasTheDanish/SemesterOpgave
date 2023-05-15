@@ -74,7 +74,10 @@ class MaterialMapper {
                     ps.setInt(1, order.getId());
                     ps.setInt(2, pair.getValue0().getId());
                     ps.setInt(3, pair.getValue1());
-                    ps.executeUpdate();
+                    int rowsAffected = ps.executeUpdate();
+                    if (rowsAffected < 1) {
+                        throw new DatabaseException("Didn't create an order linking record! Check if the order exists in the db.");
+                    }
                 }
             }
         } catch (SQLException e) {
