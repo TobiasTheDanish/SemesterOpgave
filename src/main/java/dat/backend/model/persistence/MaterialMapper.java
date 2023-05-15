@@ -30,7 +30,9 @@ class MaterialMapper {
                     int length = rs.getInt("length");
                     String description = rs.getString("description");
 
-                    return new Material(name, width, height, length, description);
+                    Material material = new Material(name, width, height, length, description);
+                    material.setPricePrMeter(rs.getDouble("pricePrMeter"));
+                    return material;
                 }
             }
         } catch (SQLException e) {
