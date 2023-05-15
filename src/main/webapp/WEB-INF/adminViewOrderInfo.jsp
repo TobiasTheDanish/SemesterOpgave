@@ -22,6 +22,7 @@
                 <tr style="border-bottom: 1px solid black">
                     <td>${material.value0.name}</td>
                     <td>${material.value1}</td>
+                    <!-- WHY IS THE PRICE NOT UPDATED  -->
                     <td>${material.value0.pricePrMeter}</td>
                     <td>${material.value0.description}</td>
                     <td>${material.value0.length} cm</td>
