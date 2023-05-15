@@ -46,7 +46,6 @@ public class AdminOrdersServlet extends HttpServlet {
             }
         } else {
             request.getRequestDispatcher("WEB-INF/adminOrders.jsp").forward(request, response);
-            System.out.println("else block");
         }
     }
 

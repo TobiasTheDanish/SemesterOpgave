@@ -8,8 +8,7 @@ import dat.backend.model.exceptions.DatabaseException;
 import org.javatuples.Pair;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static dat.backend.model.entities.Status.*;
 
@@ -191,6 +190,7 @@ class OrderMapper {
         String sql = "SELECT * FROM semesteropgave.order";
 
         try (Connection connection = connectionPool.getConnection()) {
+            Map<Integer, User> userMap = UserMapper.getAllUsers(connection);
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
 
@@ -203,7 +203,7 @@ class OrderMapper {
                     int length = rs.getInt("length");
                     boolean isInactive = rs.getBoolean("isInactive");
 
-                    User user = UserMapper.getUserById(userId, connectionPool);
+                    User user = userMap.get(userId);
 
                     Order order = new Order(user, status, width, height,length);
                     order.setId(id);
@@ -234,5 +234,4 @@ class OrderMapper {
         }
 
     }
-
 }

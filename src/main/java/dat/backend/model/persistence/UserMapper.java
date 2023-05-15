@@ -4,6 +4,8 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -216,5 +218,38 @@ class UserMapper
         {
             throw new DatabaseException(ex, "Could not insert information into database");
         }
+    }
+
+    static Map<Integer, User> getAllUsers(Connection connection) {
+        Map<Integer, User> userMap = new HashMap<>();
+        String sql = "SELECT * FROM semesteropgave.user";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("user_id");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                int role = rs.getInt("role");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                int phoneNr = rs.getInt("phoneNr");
+                int zip = rs.getInt("zipCode");
+
+                User user = new User(email, password, role);
+                user.setId(id);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setPhoneNr(phoneNr);
+                user.setZipCode(zip);
+
+                userMap.put(id, user);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return userMap;
     }
 }
