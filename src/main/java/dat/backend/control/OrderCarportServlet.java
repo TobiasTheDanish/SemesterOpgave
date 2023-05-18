@@ -8,6 +8,7 @@ import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.OrderFacade;
 import dat.backend.model.persistence.UserFacade;
+import dat.backend.model.services.MaterialListAlgorithm;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -50,6 +51,7 @@ public class OrderCarportServlet extends HttpServlet {
 
                 request.setAttribute("order", order);
                 request.getRequestDispatcher("WEB-INF/orderConfirmation.jsp").forward(request, response);
+                MaterialListAlgorithm.calcMaterialList(order, connectionPool);
             } else {
                 request.setAttribute("errormessage", "Kunne ikke oprette ordre.");
             }

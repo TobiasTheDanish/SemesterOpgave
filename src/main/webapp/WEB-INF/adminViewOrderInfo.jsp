@@ -1,10 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
+    <fmt:setLocale value="da_DK"/>
     <body style="background: #003d76; color: black; text-align: center">
         <div style="display: flex; align-content: center; flex-direction: column; color: black; background: white; padding: 2rem; min-height: 30rem">
         <h4>Ordre #${requestScope.order.id}</h4>
@@ -12,6 +14,7 @@
             <tr style="border-bottom: 2px solid black">
                 <th>Materiale</th>
                 <th>Antal</th>
+                <th>Pris</th>
                 <th>Beskrivelse</th>
                 <th>Længde</th>
                 <th>Bredde</th>
@@ -21,6 +24,7 @@
                 <tr style="border-bottom: 1px solid black">
                     <td>${material.value0.name}</td>
                     <td>${material.value1}</td>
+                    <td><fmt:formatNumber type="currency" maxFractionDigits="2">${material.value0.pricePrMeter * material.value1 * (material.value0.length / 100)}</fmt:formatNumber></td>
                     <td>${material.value0.description}</td>
                     <td>${material.value0.length} cm</td>
                     <td>${material.value0.width} cm</td>

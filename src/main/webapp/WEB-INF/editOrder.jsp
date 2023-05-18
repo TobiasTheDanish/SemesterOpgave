@@ -68,7 +68,9 @@
                     <input type="hidden" value="${requestScope.orderId}" name="orderId">
                     <input type="submit" value="Gem ændring" style="right: 100%; border-radius: 25px; padding: 8px 25px; background: #003d76; color: white; border: 0">
                 </div>
-
+                <div style="display: flex; justify-content: center; margin: 2rem">
+                    <input type="button" value="Tilbage" onclick="window.history.back();" style="right: 100%; border-radius: 25px; padding: 8px 25px; background: #003d76; color: white; border: 0">
+                </div>
             </form>
         </div>
     </div>
