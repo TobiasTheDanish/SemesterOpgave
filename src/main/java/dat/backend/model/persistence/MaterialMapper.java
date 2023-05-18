@@ -2,11 +2,15 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Material;
 import dat.backend.model.exceptions.DatabaseException;
+import org.graalvm.compiler.replacements.IntrinsicGraphBuilder;
+import org.javatuples.Pair;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 class MaterialMapper {
 
@@ -33,5 +37,35 @@ class MaterialMapper {
             throw new DatabaseException(e.getMessage());
         }
         return null;
+    }
+
+    protected static Map<Integer, Pair<Integer, Material>> getOrderLinkMap(ConnectionPool connectionPool) throws DatabaseException {
+        try {
+            getMaterialMap(connectionPool.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static Map<Integer, Material> getMaterialMap(Connection connection) throws DatabaseException {
+        Map<Integer, Material> materialMap = new HashMap<>();
+        String sql = "SELECT * FROM semesteropgave.material";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+
+                System.out.println("ID: " + id + ", Name: " + name);
+            }
+        } catch (SQLException throwables) {
+            throw new DatabaseException(throwables.getMessage());
+        }
+
+        return materialMap;
     }
 }
