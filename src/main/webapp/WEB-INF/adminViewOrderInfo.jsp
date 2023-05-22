@@ -12,6 +12,23 @@
         <h4>Ordre #${requestScope.order.id}</h4>
         <table>
             <tr style="border-bottom: 2px solid black">
+                <th>Bruger</th>
+                <th>Status</th>
+                <th>Højde</th>
+                <th>Bredde</th>
+                <th>Længde</th>
+            </tr>
+            <tr style="border-bottom: 1px solid black">
+                <td>${requestScope.order.user.firstName} ${requestScope.order.user.lastName}</td>
+                <td>${requestScope.order.status}</td>
+                <td>${requestScope.order.height} cm</td>
+                <td>${requestScope.order.width} cm</td>
+                <td>${requestScope.order.length} cm</td>
+            </tr>
+        </table>
+            <div class="spacer"></div>
+        <table>
+            <tr style="border-bottom: 2px solid black">
                 <th>Materiale</th>
                 <th>Antal</th>
                 <th>Pris</th>

@@ -33,5 +33,8 @@ th, td {
     padding: 5px 12px;
 }
 
-
+.spacer {
+    height: 55px;
+    width: 100%;
+}
 

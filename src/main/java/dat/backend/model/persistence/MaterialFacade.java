@@ -6,6 +6,7 @@ import dat.backend.model.exceptions.DatabaseException;
 import org.javatuples.Pair;
 
 import java.util.List;
+import java.util.Map;
 
 public class MaterialFacade {
     public static Material getMaterialById(int id, ConnectionPool connectionPool) throws DatabaseException {
@@ -17,5 +18,9 @@ public class MaterialFacade {
     }
     public static void createOrderLink(Order order, List<Pair<Material, Integer>> materials, ConnectionPool connectionPool) throws DatabaseException {
         MaterialMapper.createOrderLink(order, materials, connectionPool);
+    }
+
+    public static Map<Integer, List<Pair<Material, Integer>>> getOrderLinkMap(ConnectionPool connectionPool) throws DatabaseException {
+        return MaterialMapper.getOrderLinkMap(connectionPool);
     }
 }

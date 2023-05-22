@@ -18,22 +18,39 @@ import java.util.List;
 class OrderMapper {
     protected static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Order> result = new ArrayList<>();
+        Map<Integer, List<Pair<Material, Integer>>> orderLinkMap = MaterialMapper.getOrderLinkMap(connectionPool);
 
         String sql = "SELECT * FROM semesteropgave.order";
 
         try (Connection connection = connectionPool.getConnection()) {
+            Map<Integer, User> userMap = UserMapper.getAllUsers(connection);
+
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
                     int id = rs.getInt("order_id");
+                    int userId = rs.getInt("user_id");
+                    Status status = Status.values()[rs.getInt("status")];
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
+                    int length = rs.getInt("length");
+                    boolean isInactive = rs.getBoolean("isInactive");
 
-                    result.add(getOrderFromResultSet(rs, id, connectionPool));
+                    User user = userMap.get(userId);
+
+                    Order order = new Order(user, status, width, height, length);
+                    order.setId(id);
+                    order.setInactive(isInactive);
+                    order.setMaterials(orderLinkMap.get(id));
+
+                    result.add(order);
                 }
             }
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
         }
+
 
         return result;
     }
@@ -49,7 +66,20 @@ class OrderMapper {
 
                 if (rs.next()) {
 
-                    return getOrderFromResultSet(rs, id, connectionPool);
+                    int userId = rs.getInt("user_id");
+                    Status status = Status.values()[rs.getInt("status")];
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
+                    int length = rs.getInt("length");
+                    boolean isInactive = rs.getBoolean("isInactive");
+
+                    User user = UserMapper.getUserById(userId, connectionPool);
+
+                    Order order = new Order(user, status, width, height, length);
+                    order.setId(id);
+                    order.setInactive(isInactive);
+                    order.setMaterials(getOrderMaterials(id, connectionPool));
+                    return order;
                 }
             }
         } catch (SQLException e) {
@@ -57,24 +87,6 @@ class OrderMapper {
         }
 
         return null;
-    }
-
-    private static Order getOrderFromResultSet(ResultSet rs, int id, ConnectionPool connectionPool) throws SQLException, DatabaseException {
-        int userId = rs.getInt("user_id");
-        Status status = Status.values()[rs.getInt("status")];
-        int width = rs.getInt("width");
-        int height = rs.getInt("height");
-        int length = rs.getInt("length");
-        boolean isInactive = rs.getBoolean("isInactive");
-
-        User user = UserMapper.getUserById(userId, connectionPool);
-
-        Order order = new Order(user, status, width, height, length);
-        order.setId(id);
-        order.setInactive(isInactive);
-        order.setMaterials(getOrderMaterials(id, connectionPool));
-
-        return order;
     }
 
     protected static List<Pair<Material, Integer>> getOrderMaterials(int id, ConnectionPool connectionPool) throws DatabaseException {
@@ -184,6 +196,7 @@ class OrderMapper {
     }
 
 
+    @Deprecated
     protected static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
         List<Order> result = new ArrayList<>();
 
@@ -232,6 +245,5 @@ class OrderMapper {
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
         }
-
     }
 }

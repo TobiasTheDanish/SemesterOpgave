@@ -33,6 +33,7 @@ public class OrderFacade {
         return OrderMapper.updateStatus(status, orderId, connectionPool);
     }
 
+    @Deprecated
     public static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.getAllOrdersWithoutMaterials(connectionPool);
     }
