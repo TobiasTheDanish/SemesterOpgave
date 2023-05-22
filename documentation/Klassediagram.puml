@@ -1,0 +1,36 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+class AdminDeleteOrderServlet
+class AdminOrderServlet
+class AdminUpdateStatusServlet
+class AdminViewOrderServlet
+class CreateProfileServlet
+class CreateUserServlet
+class EditOrderServlet
+class Login
+class Logout
+class OrderCarportServlet
+class ViewOrdersServlet
+
+class ApplicationStart
+
+class Material
+class Order
+class Status
+class User
+
+class DatabaseException
+
+class ConnectionPool
+class MaterialFacade
+class OrderFacade
+class UserFacade
+class MaterialMapper
+class OrderMapper
+class UserMapper
+
+class Authentication
+class MaterialListAlgorithm
+
+@enduml
