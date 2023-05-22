@@ -16,28 +16,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserMapperTest
 {
-    // TODO: Change mysql login credentials if needed below
-
-    private final static String USER = "root";
-    private final static String PASSWORD = "root";
-    private final static String URL = "jdbc:mysql://localhost:3306/startcode_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String USER = "dev";
+    private final static String PASSWORD = "3r!DE32*/fDe";
+    private final static String URL = "jdbc:mysql://206.81.31.86:3306/semesteropgave_test";
 
     private static ConnectionPool connectionPool;
 
     @BeforeAll
     public static void setUpClass()
     {
-        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+        connectionPool = new ConnectionPool(USER, PASSWORD, URL, true);
 
         try (Connection testConnection = connectionPool.getConnection())
         {
             try (Statement stmt = testConnection.createStatement())
             {
                 // Create test database - if not exist
-                stmt.execute("CREATE DATABASE  IF NOT EXISTS startcode_test;");
+                stmt.execute("CREATE DATABASE IF NOT EXISTS semesteropgave_test;");
 
-                // TODO: Create user table. Add your own tables here
-                stmt.execute("CREATE TABLE IF NOT EXISTS startcode_test.user LIKE startcode.user;");
+                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.user LIKE semesteropgave.user");
+                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.order LIKE semesteropgave.order");
+                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.orderLinking LIKE semesteropgave.orderLinking");
+                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.material LIKE semesteropgave.material");
+                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.role LIKE semesteropgave.role");
             }
         }
         catch (SQLException throwables)
@@ -55,11 +56,11 @@ class UserMapperTest
             try (Statement stmt = testConnection.createStatement())
             {
                 // TODO: Remove all rows from all tables - add your own tables here
-                stmt.execute("delete from user");
+                stmt.execute("delete from semesteropgave_test.user");
 
                 // TODO: Insert a few users - insert rows into your own tables here
-                stmt.execute("insert into user (username, password, role) " +
-                        "values ('user','1234','user'),('admin','1234','admin'), ('ben','1234','user')");
+                stmt.execute("insert into semesteropgave_test.user (email, password, role) " +
+                        "values ('user','1234',1),('admin','1234',0), ('ben','1234',1)");
             }
         }
         catch (SQLException throwables)
@@ -74,10 +75,7 @@ class UserMapperTest
     {
         Connection connection = connectionPool.getConnection();
         assertNotNull(connection);
-        if (connection != null)
-        {
-            connection.close();
-        }
+        connection.close();
     }
 
     @Test

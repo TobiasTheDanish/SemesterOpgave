@@ -17,7 +17,7 @@ class UserMapper
 
         User user = null;
 
-        String sql = "SELECT * FROM semesteropgave.user WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
 
         try (Connection connection = connectionPool.getConnection())
         {
@@ -26,8 +26,7 @@ class UserMapper
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     int role = rs.getInt("role");
                     String fName = rs.getString("firstName");
                     String lName = rs.getString("lastName");
@@ -41,8 +40,7 @@ class UserMapper
                     user.setPhoneNr(phoneNum);
                     user.setZipCode(zip);
                     return user;
-                } else
-                {
+                } else {
                     throw new DatabaseException("Wrong username or password");
                 }
             }
@@ -57,7 +55,7 @@ class UserMapper
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
 
-        String sql = "INSERT INTO semesteropgave.user (email, password, role, firstName, lastName, phoneNr, zipCode) values (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO user (email, password, role, firstName, lastName, phoneNr, zipCode) values (?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
