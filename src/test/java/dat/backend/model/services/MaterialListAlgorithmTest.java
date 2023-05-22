@@ -45,7 +45,6 @@ class MaterialListAlgorithmTest {
                 stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.order LIKE semesteropgave.order");
                 stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.orderLinking LIKE semesteropgave.orderLinking");
                 stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.material LIKE semesteropgave.material");
-                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.role LIKE semesteropgave.role");
             }
         }
         catch (SQLException throwables)
@@ -67,7 +66,6 @@ class MaterialListAlgorithmTest {
                 stmt.execute("delete from semesteropgave_test.orderLinking");
                 stmt.execute("delete from semesteropgave_test.order");
                 stmt.execute("delete from semesteropgave_test.material");
-                stmt.execute("delete from semesteropgave_test.role");
 
                 // TODO: Insert a few users - insert rows into your own tables here
                 stmt.execute("insert into semesteropgave_test.user (email, password, role) " +
