@@ -13,10 +13,6 @@ public class OrderFacade {
         return OrderMapper.getAllOrders(connectionPool);
     }
 
-    public static Order getOrderById(int id, ConnectionPool connectionPool) throws DatabaseException {
-        return OrderMapper.getOrderById(id, connectionPool);
-    }
-
     public static boolean createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.createOrder(order, connectionPool);
     }
@@ -33,14 +29,6 @@ public class OrderFacade {
         return OrderMapper.updateStatus(status, orderId, connectionPool);
     }
 
-    @Deprecated
-    public static List<Order> getAllOrdersWithoutMaterials(ConnectionPool connectionPool) throws DatabaseException {
-        return OrderMapper.getAllOrdersWithoutMaterials(connectionPool);
-    }
-
-    public static List<Pair<Material, Integer>> getOrderMaterials(int id, ConnectionPool connectionPool) throws DatabaseException {
-        return OrderMapper.getOrderMaterials(id, connectionPool);
-    }
     public static boolean editOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.editOrder(order, connectionPool);
     }
