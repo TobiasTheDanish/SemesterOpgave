@@ -1,8 +1,8 @@
 @startuml
 !pragma layout smetana
 'https://plantuml.com/class-diagram
-abstract class HttpServlet
 
+abstract class HttpServlet
 class AdminDeleteOrderServlet extends HttpServlet
 class AdminOrderServlet extends HttpServlet
 class AdminUpdateStatusServlet extends HttpServlet
