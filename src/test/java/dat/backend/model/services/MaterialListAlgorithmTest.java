@@ -61,17 +61,21 @@ class MaterialListAlgorithmTest {
         {
             try (Statement stmt = testConnection.createStatement())
             {
-                // TODO: Remove all rows from all tables - add your own tables here
+
                 stmt.execute("delete from semesteropgave_test.user");
                 stmt.execute("delete from semesteropgave_test.orderLinking");
                 stmt.execute("delete from semesteropgave_test.order");
                 stmt.execute("delete from semesteropgave_test.material");
 
-                // TODO: Insert a few users - insert rows into your own tables here
+
                 stmt.execute("insert into semesteropgave_test.user (email, password, role) " +
                         "values ('user','1234',1),('admin','1234',0), ('ben','1234',1)");
                 stmt.execute("INSERT INTO semesteropgave_test.material (name, width, height, length, description, pricePrMeter) " +
-                        "VALUES ('Spær',5,20,360,'',54.95), ('Spær',5,20,390,'',54.95),('Spær',5,20,420,'',54.95), ('Spær',5,20,450,'',54.95), ('Spær',5,20,480,'',54.95), ('Spær',5,20,510,'',54.95), ('Spær',5,20,540,'',54.95), ('Spær',5,20,570,'',54.95), ('Spær',5,20,600,'',54.95), ('Stolpe',9,9,208,'',39.95), ('Stolpe',9,9,238,'',39.95), ('Stolpe',9,9,268,'',39.95), ('Stolpe',9,9,298,'',39.95), ('Stolpe',9,9,369,'',39.95), ('Rem',5,20,360,'',54.95), ('Rem',5,20,390,'',54.95), ('Rem',5,20,420,'',54.95), ('Rem',5,20,450,'',54.95), ('Rem',5,20,480,'',54.95), ('Rem',5,20,510,'',54.95), ('Rem',5,20,540,'',54.95), ('Rem',5,20,570,'',54.95), ('Rem',5,20,600,'',54.95)");
+                        "VALUES ('Spær',5,20,360,'',54.95), ('Spær',5,20,390,'',54.95),('Spær',5,20,420,'',54.95), ('Spær',5,20,450,'',54.95), " +
+                        "('Spær',5,20,480,'',54.95), ('Spær',5,20,510,'',54.95), ('Spær',5,20,540,'',54.95), ('Spær',5,20,570,'',54.95), ('Spær',5,20,600,'',54.95), " +
+                        "('Stolpe',9,9,208,'',39.95), ('Stolpe',9,9,238,'',39.95), ('Stolpe',9,9,268,'',39.95), ('Stolpe',9,9,298,'',39.95), " +
+                        "('Stolpe',9,9,369,'',39.95), ('Rem',5,20,360,'',54.95), ('Rem',5,20,390,'',54.95), ('Rem',5,20,420,'',54.95), ('Rem',5,20,450,'',54.95), " +
+                        "('Rem',5,20,480,'',54.95), ('Rem',5,20,510,'',54.95), ('Rem',5,20,540,'',54.95), ('Rem',5,20,570,'',54.95), ('Rem',5,20,600,'',54.95)");
                 User user = UserFacade.login("user", "1234", connectionPool);
                 order = new Order(user, Status.BESTILT, 400, 290, 550);
             }

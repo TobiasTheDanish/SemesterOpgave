@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/dat/backend/model/persistence/MaterialMapper.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/dat/backend/model/persistence/OrderMapper.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/dat/backend/model/persistence/UserMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/test/java/dat/backend/model/services/MaterialListAlgorithmTest.java" dialect="GenericSQL" />
   </component>
 </project>
