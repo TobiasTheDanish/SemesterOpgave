@@ -27,8 +27,8 @@ enum Status {
 }
 class User
 
-class Exception
-class DatabaseException extends Exception
+
+class DatabaseException
 
 class ConnectionPool
 class MaterialFacade {
@@ -77,12 +77,12 @@ class OrderMapper{
 }
 
 class UserMapper{
-# {static} User login(String username, String password, ConnectionPool connectionPool)
-# {static} User createUser(String username, String password, int role, ConnectionPool connectionPool)
-# {static} boolean doesUserExist(String email, ConnectionPool connectionPool)
-# {static} int getId(String email, ConnectionPool connectionPool)
-# {static} void updateUserProfile(User user, ConnectionPool connectionPool)
-# {static} Map<Integer, User> getAllUsers(Connection connection)
+~ {static} User login(String username, String password, ConnectionPool connectionPool)
+~ {static} User createUser(String username, String password, int role, ConnectionPool connectionPool)
+~ {static} boolean doesUserExist(String email, ConnectionPool connectionPool)
+~ {static} int getId(String email, ConnectionPool connectionPool)
+~ {static} void updateUserProfile(User user, ConnectionPool connectionPool)
+~ {static} Map<Integer, User> getAllUsers(Connection connection)
 }
 
 class MaterialListAlgorithm {
@@ -91,25 +91,47 @@ class MaterialListAlgorithm {
     + {static} Pair<Material, Integer> getRafters(ConnectionPool connectionPool, int length, int width)
     + {static} Pair<Material, Integer> getPosts(ConnectionPool connectionPool, int length, int height)
 }
+ApplicationStart *-- ConnectionPool
 
-OrderFacade --|> OrderMapper
-UserFacade --|> UserMapper
-MaterialFacade --|> MaterialMapper
+OrderFacade ..|> OrderMapper : uses
+UserFacade ..|> UserMapper : uses
+MaterialFacade ..|> MaterialMapper : uses
 
-AdminDeleteOrderServlet ..|> OrderFacade : uses
+OrderMapper ...|> DatabaseException : throws
+UserMapper ..|> DatabaseException : throws
+MaterialMapper ..|> DatabaseException : throws
+
+AdminDeleteOrderServlet ...|> OrderFacade : uses
 AdminOrderServlet ..|> OrderFacade : uses
 AdminUpdateStatusServlet ..|> OrderFacade : uses
 OrderCarportServlet ..|> OrderFacade : uses
 EditOrderServlet ..|> OrderFacade : uses
 ViewOrdersServlet ..|> OrderFacade : uses
 
+ConnectionPool ...|> AdminDeleteOrderServlet
+ConnectionPool .|> AdminOrderServlet
+ConnectionPool .|> AdminUpdateStatusServlet
+ConnectionPool .|> OrderCarportServlet
+ConnectionPool .|> EditOrderServlet
+ConnectionPool ...|> ViewOrdersServlet
+
 CreateProfileServlet ..|> UserFacade : uses
 CreateUserServlet ..|> UserFacade : uses
 Login ..|> UserFacade : uses
-OrderCarportServlet ..|> UserFacade : uses
-
+OrderCarportServlet ...|> UserFacade : uses
+MaterialFacade <|... OrderMapper : uses
+UserMapper <|... OrderMapper :uses
 MaterialListAlgorithm ..|> MaterialFacade : uses
-OrderCarportServlet ..|> MaterialListAlgorithm : uses
+OrderCarportServlet ...|> MaterialListAlgorithm : uses
+
+MaterialMapper o-- Material : Instance of
+OrderMapper o-- Order : Instance of
+OrderCarportServlet o-- Order : Instance of
+CreateProfileServlet o-- User : Instance of
+CreateUserServlet o-- User : Instance of
+UserMapper o-- User : Instance of
+Order *-- Status : 1
+
 
 
 

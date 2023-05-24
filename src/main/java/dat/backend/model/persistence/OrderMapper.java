@@ -18,7 +18,7 @@ import java.util.List;
 class OrderMapper {
     protected static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Order> result = new ArrayList<>();
-        Map<Integer, List<Pair<Material, Integer>>> orderLinkMap = MaterialMapper.getOrderLinkMap(connectionPool);
+        Map<Integer, List<Pair<Material, Integer>>> orderLinkMap = MaterialFacade.getOrderLinkMap(connectionPool);
 
         String sql = "SELECT * FROM semesteropgave.order";
 
