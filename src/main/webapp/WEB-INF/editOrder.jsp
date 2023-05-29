@@ -13,8 +13,8 @@
     <head>
         <title>Order Carport</title>
     </head>
-    <body style="background: #003d76; text-align: center">
-    <div class="container p-5" style="min-height: 50rem; background: white">
+    <body class="bodyBackground">
+    <div class="container p-5 mainBox">
         <div style="">
             <h1><span>Rediger carport</span></h1>
 
@@ -25,7 +25,7 @@
                 <div style="margin: 5px 5px"> <br> <br>
                     <label for="width" style="font-size: 24px">Bredde (cm)</label> <br>
                     <select id="width" name="width"  style="padding: 2px 40px">
-                        <option value="${requestScope.width}">${requestScope.width} </option>
+                        <option value="${requestScope.width}">${requestScope.width} cm</option>
                         <option value="250">250 cm</option>
                         <option value="300">300 cm</option>
                         <option value="350">350 cm</option>
@@ -39,7 +39,7 @@
                 <div style="margin: 10px 5px">
                     <label for="height" style="font-size: 24px">Højde (cm)</label> <br>
                     <select id="height" name="height" required="required" style="padding: 2px 40px">
-                        <option value="${requestScope.height}">${requestScope.height} </option>
+                        <option value="${requestScope.height}">${requestScope.height} cm</option>
                         <option value="200">200 cm</option>
                         <option value="230">230 cm</option>
                         <option value="260">260 cm</option>
@@ -52,7 +52,7 @@
                 <div style="margin: 10px 5px">
                     <label for="length" style="font-size: 24px">Længde (cm)</label> <br>
                     <select id="length" name="length" required="required" style="padding: 2px 40px">
-                        <option value="${requestScope.length}">${requestScope.length} </option>
+                        <option value="${requestScope.length}">${requestScope.length} cm</option>
                         <option value="300">300 cm</option>
                         <option value="400">400 cm</option>
                         <option value="450">450 cm</option>
