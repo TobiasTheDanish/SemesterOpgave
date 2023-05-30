@@ -38,7 +38,6 @@ class UserMapperTest
                 stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.order LIKE semesteropgave.order");
                 stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.orderLinking LIKE semesteropgave.orderLinking");
                 stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.material LIKE semesteropgave.material");
-                stmt.execute("CREATE TABLE IF NOT EXISTS semesteropgave_test.role LIKE semesteropgave.role");
             }
         }
         catch (SQLException throwables)
