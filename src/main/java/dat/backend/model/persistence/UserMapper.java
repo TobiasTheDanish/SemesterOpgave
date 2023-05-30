@@ -85,7 +85,7 @@ class UserMapper
     }
 
 
-    //TODO check this method. UserID/Email idk what to use.
+    /*
     public static User getUser(int id, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM user WHERE user_id=?";
 
@@ -108,6 +108,8 @@ class UserMapper
         }
         return null;
     }
+
+     */
 
 
 
@@ -149,42 +151,7 @@ class UserMapper
     }
 
 
-    static User getUserById(int userId, ConnectionPool connectionPool) throws DatabaseException {
-        User user = null;
-
-        String sql = "SELECT * FROM semesteropgave.user WHERE user_id=?";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, userId);
-
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    String email = rs.getString("email");
-                    String password = rs.getString("password");
-                    int role = rs.getInt("role");
-                    String firstName = rs.getString("firstName");
-                    String lastName = rs.getString("lastName");
-                    int phoneNr = rs.getInt("phoneNr");
-                    int zipCode = rs.getInt("zipCode");
-
-                    user = new User(email, password, role);
-                    user.setFirstName(firstName);
-                    user.setLastName(lastName);
-                    user.setPhoneNr(phoneNr);
-                    user.setZipCode(zipCode);
-
-                    return user;
-                }
-            }
-        } catch (SQLException throwables) {
-            throw new DatabaseException(throwables.getMessage());
-        }
-
-        return null;
-    }
-
-    static User updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException
+    static void updateUserProfile(User user, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         String sql = "update semesteropgave.user set firstName=?, lastName=?, phoneNr=?, zipCode=? where email=?";
@@ -205,7 +172,6 @@ class UserMapper
                     user.setLastName(user.getLastName());
                     user.setPhoneNr(user.getPhoneNr());
                     user.setZipCode(user.getZipCode());
-                    return user;
                 } else
                 {
                     throw new DatabaseException("The user with username = " + user.getUsername() + " could not be inserted into the database");

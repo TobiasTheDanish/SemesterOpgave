@@ -34,8 +34,8 @@ public class CreateUserServlet extends HttpServlet {
      * If the user already exist in the database, or the passwords did not match, an 'errormessage' attribute will be send back to the
      * @param request of type HttpServletRequest.
      * @param response of type HttpServletResponse.
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException .
+     * @throws IOException .
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
